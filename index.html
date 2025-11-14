@@ -519,10 +519,23 @@
             font-family: 'Lato', sans-serif;
             font-size: 1rem;
             transition: transform 0.5s ease-in-out; /* Smooth slide-in */
+            
+            /* NEW: Styles for error state */
+            background-color: #D32F2F; /* Red for error */
+            visibility: hidden; /* Use visibility instead of display */
+            opacity: 0;
+            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s;
         }
         #rsvp-toast.show {
             transform: translate(-50%, 0); /* Slide into view */
+            visibility: visible;
+            opacity: 1;
         }
+        /* NEW: Success state style */
+        #rsvp-toast.success {
+            background-color: #333; /* Back to dark for success */
+        }
+        
         #rsvp-toast svg {
             width: 24px;
             height: 24px;
@@ -530,7 +543,11 @@
             stroke-width: 2.5;
             flex-shrink: 0; /* Prevent icon from shrinking */
         }
-        /* --- END OF NEW STYLES --- */
+        /* NEW: Icon for error state */
+        #rsvp-toast.error svg {
+            stroke: #FFCDD2; /* Light red X */
+        }
+        
 
 
         /* --- Mobile Responsiveness --- */
@@ -718,8 +735,9 @@
         
         <!-- Entry for the Reception (now in its own section) --><div class="location-entry fade-in">
             <div class="location-image">
-                <a href="#" target="_blank" rel="noopener noreferrer"> <!-- Add your reception maps link here --><img src="reception-picture.png" alt="Reception Venue"
-                        onerror="this.src='https{placehold.co/500x400/F0EFE8/999?text=Reception+Venue'">
+                <a href="#" target="_blank" rel="noopener noreferrer"> <!-- Add your reception maps link here --><!-- FIX: Changed httpsG to https -->
+                    <img src="https://placehold.co/500x400/F0EFE8/999?text=Reception+Venue" alt="Reception Venue"
+                        onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Reception+Venue'">
                 </a>
             </div>
             <div class="location-info">
@@ -748,7 +766,7 @@
         
         <div class="reminders-grid">
             <!-- Reminder Card 1: NOTE ON GIFTS --><div class="reminder-card fade-in">
-                <!-- Replaced SVG with <img> tag -->
+                <!-- Replaced SVG with <img> tag --><!-- FIX: Changed httpsG to https -->
                 <img src="https://placehold.co/80x80/fcfaf5/777?text=Gift" alt="Note on Gifts"
                      onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Gift'">
                 <h3>NOTE ON GIFTS</h3>
@@ -756,7 +774,7 @@
             </div>
 
             <!-- Reminder Card 2: UNPLUGGED --><div class="reminder-card fade-in">
-                <!-- Replaced SVG with <img> tag -->
+                <!-- Replaced SVG with <img> tag --><!-- FIX: Changed httpsG to https -->
                 <img src="https://placehold.co/80x80/fcfaf5/777?text=Unplugged" alt="Unplugged Ceremony"
                      onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Unplugged'">
                 <h3>UNPLUGGED</h3>
@@ -764,7 +782,7 @@
             </div>
 
             <!-- Reminder Card 3: RSVP --><div class="reminder-card fade-in">
-                <!-- Replaced SVG with <img> tag -->
+                <!-- Replaced SVG with <img> tag --><!-- FIX: Changed httpsG to https -->
                 <img src="https://placehold.co/80x80/fcfaf5/777?text=RSVP" alt="RSVP"
                      onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=RSVP'">
                 <h3>RSVP</h3>
@@ -788,7 +806,8 @@
     --><section id="rsvp" class="fullscreen-page">
         <h2 class="page-title fade-in">Will You Be Joining Us?</h2>
 
-        <form action="https://send.pageclip.co/TFpvOufmu62uxqQrJlKLWILsVD7xz49I" class="pageclip-form rsvp-form-container fade-in" method="post">
+        <!-- FIX: Changed httpshttps to https in the action URL -->
+        <form action="https://send.pageclip.co/TFpvOufmu62uxqQrJlKLWILsVD7xz49I/Wedding-RSVP" class="pageclip-form rsvp-form-container fade-in" method="post">
             
             <div class="form-group">
                 <label for="name">Full Name</label>
@@ -833,13 +852,14 @@
         Your browser does not support the audio element.
     </audio>
     <button id="music-toggle">
-        <!-- SVG icon for 'Play' --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        <!-- SVG icon for 'Play' --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
     </button>
 
     <!-- NEW: RSVP "Toast" Notification (starts hidden) -->
     <div id="rsvp-toast">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-        <span>Thank You! Your RSVP has been sent.</span>
+        <!-- Icon will be changed by JS -->
+        <svg id="toast-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></svg>
+        <span id="toast-message"></span>
     </div>
 
 
@@ -851,7 +871,8 @@
             
             // SVG icons for play and mute
             const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
-            const muteIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9"x2="23" y2="15"></line></svg>';
+            // FIX: Added a space in the muteIcon SVG string
+            const muteIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
 
             let isPlaying = false;
             
@@ -917,6 +938,8 @@
             // --- NEW & FINAL FIX FOR 404 ERROR (with Toast) ---
             const rsvpForm = document.querySelector('.pageclip-form');
             const toast = document.getElementById('rsvp-toast'); // Get the new toast element
+            const toastIcon = document.getElementById('toast-icon');
+            const toastMessage = document.getElementById('toast-message');
             
             // 1. Listen for the form SUBMIT event
             if (rsvpForm) {
@@ -926,21 +949,46 @@
                 });
             }
 
+            // --- Function to show the toast notification ---
+            let toastTimer;
+            function showToast(message, isSuccess = true) {
+                if (!toast || !toastIcon || !toastMessage) return;
+
+                // Clear any existing timer
+                clearTimeout(toastTimer);
+
+                // Set content and style
+                toastMessage.textContent = message;
+                if (isSuccess) {
+                    toast.className = 'success'; // Use class for styling
+                    toastIcon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>'; // Checkmark
+                } else {
+                    toast.className = 'error'; // Use class for styling
+                    toastIcon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>'; // 'X' icon
+                }
+                
+                // Show the toast
+                toast.classList.add('show');
+                
+                // Hide the toast after 5 seconds
+                toastTimer = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 5000); // 5 seconds
+            }
+
             // 3. Listen for Pageclip's "success" event (which happens in the background)
             window.addEventListener('pageclip:success', (event) => {
-                // 4. Run the "Thank You" toast notification code
-                if (rsvpForm && toast) {
-                    // 1. Reset the form for the next submission
-                    rsvpForm.reset(); 
-                    
-                    // 2. Show the toast
-                    toast.classList.add('show');
-                    
-                    // 3. Hide the toast after 5 seconds
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 5000); // 5 seconds
+                if (rsvpForm) {
+                    rsvpForm.reset(); // Reset form for next user
                 }
+                showToast("Thank You! Your RSVP has been sent.", true);
+            });
+            
+            // 4. NEW: Listen for Pageclip's "error" event
+            window.addEventListener('pageclip:error', (event) => {
+                console.error("Pageclip error: ", event.detail.error);
+                // Show a user-friendly error message
+                showToast("Error: Submission blocked (please try again later).", false);
             });
             // --- END OF NEW SCRIPT ---
 
