@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elaine & John's Wedding</title>
+    <!-- We are including the fonts directly in the HTML head --><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Lato:wght@300;400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    
+    <!-- Pageclip Stylesheet --><link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+
+    <!-- All the CSS styles are placed inside this <style> tag --><style>
+        /* --- Basic Setup --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            /* This makes the "SCROLL DOWN" link scroll smoothly */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #fcfaf5; /* Set new default background */
+            color: #555; /* Slightly darker text for readability */
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 400;
+        }
+        
+        /* Helper class for full-height pages */
+        .fullscreen-page {
+            min-height: 100vh; /* Page is AT LEAST screen height */
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 100px 20px; /* Base padding */
+            position: relative;
+            overflow: hidden; /* Hide overflow on the page itself */
+        }
+
+        /* --- Section 1: Hero (Landing Page) --- */
+        #hero {
+            height: 100vh; /* Hero is always 100vh */
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            /* background-image is removed from here */
+            box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
+            padding: 0; /* Hero doesn't need the same padding */
+        }
+
+        /* This new element will hold the background image for the parallax effect */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Start at 100% height */
+            background-image: url('image_0e0683.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1; /* Sit behind the content */
+            will-change: transform; /* Performance hint for the browser */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1; /* Make sure content is on top of the background */
+            height: 100%;
+            width: 100%;
+            color: white;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* New container for the names */
+        .names-container {
+            position: absolute;
+            top: 35%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: clamp(300px, 90vw, 1100px); 
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2rem, 7vw, 3.5rem); 
+            font-weight: 300;
+            text-transform: uppercase;
+            margin: 0; 
+        }
+        
+        .name-elaine { text-align: left; }
+        
+        .name-john {
+            text-align: center; /* Aligns John to the center (with &) */
+            transform: translateX(18vw); /* This is your new value */
+        }
+
+        .ampersand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 10vw, 5rem); 
+            color: white;
+            line-height: 1; 
+            text-align: center; 
+            margin: -15px 0; 
+            padding: 0;
+        }
+
+        .date {
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+        }
+
+        .invite-text {
+            position: absolute;
+            bottom: 5%;
+            right: 5%;
+            text-align: right;
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            line-height: 1.5;
+        }
+
+        /* --- Animated Scroll Button (General) --- */
+        .scroll-down {
+            position: absolute; /* This is for the Hero page */
+            bottom: 5%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 10;
+        }
+
+        .scroll-down a {
+            text-decoration: none;
+            color: white;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Dark version for light pages */
+        .scroll-down.dark {
+            position: relative; /* CHANGED: No longer sticks to bottom */
+            bottom: auto; /* CHANGED */
+            left: auto; /* CHANGED */
+            transform: none; /* CHANGED */
+            margin-top: 60px; /* CHANGED: Added space from content */
+        }
+        
+        .scroll-down.dark a { color: #888; }
+        .scroll-down.dark .chevrons span {
+            border-bottom: 2px solid #888;
+            border-right: 2px solid #888;
+        }
+
+        .scroll-down .chevrons {
+            margin-top: 10px;
+        }
+
+        .scroll-down .chevrons span {
+            display: block;
+            width: 18px;
+            height: 18px;
+            border-bottom: 2px solid white;
+            border-right: 2px solid white;
+            transform: rotate(45deg);
+            margin: -10px auto;
+            opacity: 0;
+            animation: bounce 2s infinite;
+        }
+        .scroll-down .chevrons span:nth-child(2) { animation-delay: 0.2s; }
+        .scroll-down .chevrons span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%   { opacity: 0; transform: rotate(45deg) translate(-10px, -10px); }
+            50%  { opacity: 1; }
+            100% { opacity: 0; transform: rotate(45deg) translate(10px, 10px); }
+        }
+
+        /* --- Page Title Style (for sections) --- */
+        .page-title {
+            font-family: 'Cormorant Garamond', serif; /* Changed to match image */
+            font-size: clamp(2.5rem, 8vw, 3.5rem); /* Adjusted size */
+            font-weight: 400;
+            color: #444;
+            margin-bottom: 60px;
+            text-align: center;
+            width: 100%;
+            letter-spacing: 3px; /* Added letter spacing */
+            text-transform: uppercase; /* Added uppercase */
+        }
+
+        /* --- SECTION 2: LOCATIONS OVERVIEW --- */
+        #locations-overview {
+            background-color: #fcfaf5;
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+        }
+        
+        .overview-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 60px;
+            max-width: 1100px;
+            width: 100%;
+        }
+        
+        .overview-card {
+            background: transparent;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .overview-card img {
+            width: 100%;
+            height: 450px; /* Fixed height for consistency */
+            object-fit: cover; /* Prevents stretching */
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            background-color: #f0efe8;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .overview-card a:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        
+        .overview-card p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #5d5d5d;
+        }
+
+
+        /* --- SECTION 3: CEREMONY DETAILS --- */
+        #ceremony-details {
+            background-color: #fcfaf5; 
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+            border-top: 1px solid #f0e9e1; /* Subtle separator */
+            text-align: left;
+        }
+
+        /* This is the new container for an entry (e.g., Ceremony) */
+        .location-entry {
+            display: flex;
+            flex-wrap: wrap; /* Stacks on mobile */
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1100px;
+            width: 100%;
+        }
+        
+        .location-image {
+            flex: 1; 
+            min-width: 300px;
+            max-width: 500px;
+        }
+
+        .location-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            background-color: #f0efe8; /* Placeholder bg */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .location-image a:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .location-info {
+            flex: 1; 
+            min-width: 300px;
+            padding-left: 20px; /* Space from image */
+        }
+        
+        .location-info h3 { /* "MARRIAGE CEREMONY" */
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .location-info h4 { /* "ST. GABRIEL..." */
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        
+        .location-info p { /* Time and Address */
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+        
+        /* --- SECTION 4: RECEPTION DETAILS (NEW) --- */
+        #reception-details {
+            background-color: #fcfaf5; 
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+            border-top: 1px solid #f0e9e1; /* Subtle separator */
+            text-align: left;
+        }
+        
+        /* --- SECTION 5: REMINDERS --- */
+        #reminders {
+            background-color: #fcfaf5;
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+            border-top: 1px solid #f0e9e1;
+            padding-bottom: 80px; /* Added more padding for scroll down button */
+        }
+        
+        .reminders-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .reminder-card {
+            text-align: center;
+            max-width: 300px;
+            padding: 20px;
+            background: transparent;
+        }
+
+        .reminder-card svg {
+            width: 80px;
+            height: 80px;
+            stroke: #5d5d5d; /* Icon color */
+            stroke-width: 1.5;
+            margin-bottom: 25px;
+            fill: none; /* No fill by default for line art */
+        }
+
+        .reminder-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain; /* Keeps your image aspect ratio */
+            margin-bottom: 25px;
+        }
+
+
+        /* --- SECTION 6: RSVP --- */
+        #rsvp {
+            background-color: #fcfaf5; 
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+            border-top: 1px solid #f0e9e1; /* Subtle separator */
+        }
+
+        /* Custom styles for the Pageclip form */
+        .rsvp-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            font-family: 'Lato', sans-serif;
+            color: #555;
+            width: 100%;
+            padding: 0 20px; /* Padding for form container */
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            background-color: #fff;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        
+        .select-wrapper {
+            position: relative;
+        }
+        .form-group select {
+            padding-right: 40px; /* Make space for arrow */
+        }
+        .select-wrapper::after {
+            content: '▼';
+            font-size: 0.8rem;
+            color: #888;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .pageclip-form__submit {
+            display: inline-block;
+            width: 100%;
+            padding: 16px;
+            background-color: #333; 
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-family: 'Lato', sans-serif;
+            font-size: 1.1rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: background-color 0.3s;
+        }
+        .pageclip-form__submit:hover {
+            background-color: #555;
+        }
+        .pageclip-form__submit--loading {
+            background-color: #777;
+        }
+
+        /* --- Animation on Scroll --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px); 
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.show {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        /* --- Music Toggle Button --- */
+        #music-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #333;
+            transition: transform 0.2s ease-out;
+        }
+        
+        #music-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        #music-toggle svg {
+            width: 24px;
+            height: 24px;
+            stroke: #333;
+        }
+
+        /* --- Mobile Responsiveness --- */
+        @media (max-width: 768px) {
+            .fullscreen-page {
+                padding: 100px 20px; /* Removed extra bottom padding */
+            }
+            
+            #hero {
+                height: 100vh; /* Hero is always 100vh */
+            }
+
+            .names-container {
+                top: 35%; /* Adjusted from 30% */
+                width: 95vw; 
+            }
+
+            .hero-content h1 {
+                font-size: clamp(1.8rem, 7vw, 3.5rem); 
+            }
+            
+            .ampersand {
+                margin: -10px 0; 
+            }
+
+            .date {
+                left: 50%;
+                bottom: 20%; 
+                transform: translateX(-50%);
+                text-align: center;
+                width: 90%;
+            }
+
+            .invite-text {
+                right: auto; 
+                left: 50%;
+                bottom: 12%; 
+                transform: translateX(-50%);
+                text-align: center;
+                width: 90%;
+            }
+            
+            /* Ensures scroll button has space on mobile */
+            .fullscreen-page:not(#hero) {
+                 padding-bottom: 120px;
+            }
+            
+            .scroll-down.dark {
+                margin-top: 40px; /* Less margin on mobile */
+            }
+
+            .location-info {
+                padding-left: 0; 
+                text-align: center; 
+            }
+            
+            .page-title {
+                margin-bottom: 40px;
+            }
+
+            .overview-card img {
+                height: 350px; /* Slightly shorter on mobile */
+            }
+            
+            .name-john {
+                transform: none; /* THIS is the rule that handles it dynamically on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 
+      SECTION 1: FULL-SCREEN LANDING PAGE
+    --><section id="hero" class="fullscreen-page">
+        <!-- This new div will be controlled by JavaScript for the parallax effect -->
+        <div class="hero-background"></div>
+
+        <div class="hero-content">
+            
+            <div class="names-container">
+                <h1 class="name-elaine">ELAINE VERNADINE</h1>
+                <p class="ampersand">&</p>
+                <h1 class="name-john">JOHN CHRISTIAN</h1>
+            </div>
+            
+            <p class="date">February 19, 2026</p>
+            
+            <p class="invite-text">
+                CORDIALLY INVITE YOU TO THEIR<br>
+                WEDDING CELEBRATION
+            </p>
+
+            <div class="scroll-down">
+                <a href="#locations-overview"> <!-- Points to Page 2 --><span>SCROLL DOWN</span>
+                    <div class="chevrons">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 
+      SECTION 2: "HOW TO GET THERE" (OVERVIEW)
+    --><section id="locations-overview" class="fullscreen-page">
+        <h2 class="page-title fade-in">How to Get There</h2> 
+        
+        <div class="overview-container">
+            <div class="overview-card fade-in">
+                <!-- This now links to Page 3 --><a href="#ceremony-details">
+                    <img src="ceremony-picture.png" alt="Marriage Ceremony Location"
+                         onerror="this.src='https://placehold.co/400x450/e8e2d9/a6a6a6?text=Marriage+Ceremony'">
+                </a>
+                <p>MARRIAGE CEREMONY</p>
+            </div>
+            <div class="overview-card fade-in">
+                <!-- This now links to Page 4 (Reception Details) --><a href="#reception-details"> 
+                    <img src="reception-picture.png" alt="Reception Location"
+                         onerror="this.src='https://placehold.co/400x450/e8e2d9/a6a6a6?text=Reception+Venue'">
+                </a>
+                <p>RECEPTION</p>
+            </div>
+        </div>
+
+        <div class="scroll-down dark fade-in">
+            <a href="#ceremony-details"> <!-- Points to Page 3 --><span>SCROLL DOWN</span>
+                <div class="chevrons">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 
+      SECTION 3: "HOW TO GET THERE" (CEREMONY DETAILS)
+    --><section id="ceremony-details" class="fullscreen-page">
+        <h2 class="page-title fade-in">How to Get There</h2> 
+        
+        <!-- Entry for the Ceremony --><div class="location-entry fade-in">
+            <div class="location-image">
+                <a href="https://maps.google.com/maps?q=St.+Gabriel+the+Archangel+Parish+Church+Santa+Maria+Bulacan" target="_blank" rel="noopener noreferrer">
+                    <img src="ceremony-picture.png" alt="St. Gabriel the Archangel Parish Church"
+                        onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Ceremony+Venue'">
+                </a>
+            </div>
+            <div class="location-info">
+                <h3>MARRIAGE CEREMONY</h3>
+                <h4>ST. GABRIEL THE ARCHANGEL<br>PARISH CHURCH</h4>
+                <p>12:00 PM</p>
+                <p>J. P. Rizal Street, New Site, Santa Maria, Bulacan</p>
+            </div>
+        </div>
+        
+        <div class="scroll-down dark fade-in">
+            <a href="#reception-details"> <!-- Points to Page 4 (Reception) --><span>SCROLL DOWN</span>
+                <div class="chevrons">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <!-- 
+      SECTION 4: "HOW TO GET THERE" (RECEPTION DETAILS) (NEW)
+    --><section id="reception-details" class="fullscreen-page">
+        <h2 class="page-title fade-in">How to Get There</h2> 
+        
+        <!-- Entry for the Reception (now in its own section) --><div class="location-entry fade-in">
+            <div class="location-image">
+                <a href="https://www.google.com/maps?sca_esv=be9bcadcc598f779&rlz=1C1WBCC_enPH1084PH1084&output=search&q=146+J.P.+Rizal+St.+San+Gabriel+3022+Santa+Maria,+Bulacan&source=lnms&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZMLQ4RPdPjLPmOakFCN7X8CDeRd7MSf3QLuh-Ogt4OB5y4-wxjrYUFy9kPDMzOULSyyXiNII_xhJX84-a4N5bwPI3rMOb-8OhiELlIiHyylGa02AW_oYufEe7M5O7YScyJ9h2JReKXYe_gPzHeXDQG2gGMq_oy1H5FOKqZiSOqGpX1MYZ_6cYaiq6PXCc86aBfAV8GQ&entry=mc&ved=1t:200715&ictx=111" target="_blank" rel="noopener noreferrer"> <!-- Add your reception maps link here --><img src="reception-picture.png" alt="Reception Venue"
+                        onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Reception+Venue'">
+                </a>
+            </div>
+            <div class="location-info">
+                <h3>RECEPTION</h3>
+                <h4>ANGEL GABRIEL GARDEN</h4>
+                <p>3:00 PM</p>
+                <p>146 J.P. Rizal St. San Gabriel 3022 Santa Maria, Bulacan>
+            </div>
+        </div>
+
+        <div class="scroll-down dark fade-in">
+            <a href="#reminders"> <!-- Points to Page 5 (Reminders) --><span>SCROLL DOWN</span>
+                <div class="chevrons">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </a>
+        </div>
+    </section>
+    
+    <!-- 
+      SECTION 5: "REMINDERS" (Redesigned)
+    --><section id="reminders" class="fullscreen-page">
+        <h2 class="page-title fade-in">THE CEREMONY</h2>
+        
+        <div class="reminders-grid">
+            <!-- Reminder Card 1: NOTE ON GIFTS --><div class="reminder-card fade-in">
+                <!-- Replaced SVG with <img> tag -->
+                <img src="https://placehold.co/80x80/fcfaf5/777?text=Gift" alt="Note on Gifts"
+                     onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Gift'">
+                <h3>NOTE ON GIFTS</h3>
+                <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
+            </div>
+
+            <!-- Reminder Card 2: UNPLUGGED --><div class="reminder-card fade-in">
+                <!-- Replaced SVG with <img> tag -->
+                <img src="https://placehold.co/80x80/fcfaf5/777?text=Unplugged" alt="Unplugged Ceremony"
+                     onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Unplugged'">
+                <h3>UNPLUGGED</h3>
+                <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
+            </div>
+
+            <!-- Reminder Card 3: RSVP --><div class="reminder-card fade-in">
+                <!-- Replaced SVG with <img> tag -->
+                <img src="https://placehold.co/80x80/fcfaf5/777?text=RSVP" alt="RSVP"
+                     onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=RSVP'">
+                <h3>RSVP</h3>
+                <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
+            </div>
+        </div>
+
+        <div class="scroll-down dark fade-in">
+            <a href="#rsvp"> <!-- Points to Page 6 (RSVP) --><span>SCROLL DOWN</span>
+                <div class="chevrons">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- 
+      SECTION 6: RSVP (Was 5)
+    --><section id="rsvp" class="fullscreen-page">
+        <h2 class="page-title fade-in">Will You Be Joining Us?</h2>
+
+        <form action="https://send.pageclip.co/TFpvOufmu62uxqQrJlKLWILsVD7xz49I/Wedding-RSVP" class="pageclip-form rsvp-form-container fade-in" method="post">
+            
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+                <label for="attending">Will you be attending?</label>
+                <div class="select-wrapper">
+                    <select id="attending" name="attending" required>
+                        <option value="" disabled selected>Please choose an option...</option>
+                        <option value="Yes, with pleasure!">Yes, with pleasure!</option>
+                        <option value="No, with regrets.">No, with regrets.</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="song">A song you'd love to hear?</label>
+                <input type="text" id="song" name="song_request" placeholder="(Optional)" />
+            </div>
+
+            <button type="submit" class="pageclip-form__submit">
+                <span>Send RSVP</span>
+            </button>
+        </form>
+        <!-- No scroll-down button here, as it's the last page --></section>
+
+    <!-- 
+      BACKGROUND MUSIC
+    --><audio id="bg-music" loop>
+        <!-- 
+          IMPORTANT: Replace 'your-music.mp3' 
+          with the actual filename of your song.
+        --><source src="your-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button id="music-toggle">
+        <!-- SVG icon for 'Play' --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+    </button>
+
+
+    <!-- All the JavaScript is placed inside this <script> tag --><script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const music = document.getElementById('bg-music');
+            const toggleBtn = document.getElementById('music-toggle');
+            
+            // SVG icons for play and mute
+            const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
+            const muteIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9"x2="23" y2="15"></line></svg>';
+
+            let isPlaying = false;
+            
+            // Try to autoplay music
+            music.play().then(() => {
+                // It worked! (Rare, but possible)
+                isPlaying = true;
+                toggleBtn.innerHTML = muteIcon;
+            }).catch(error => {
+                // Autoplay was blocked by the browser (this is normal)
+                isPlaying = false;
+                toggleBtn.innerHTML = playIcon;
+                console.log("Autoplay was prevented. User must interact with the page to start audio.");
+            });
+
+            toggleBtn.addEventListener('click', () => {
+                if (isPlaying) {
+                    music.pause();
+                    toggleBtn.innerHTML = playIcon;
+                } else {
+                    music.play().then(() => {
+                        toggleBtn.innerHTML = muteIcon;
+                    }).catch(error => {
+                        console.log("Audio play was prevented by browser: ", error);
+                    });
+                }
+                isPlaying = !isPlaying;
+            });
+
+            music.addEventListener('ended', () => {
+                isPlaying = false;
+                toggleBtn.innerHTML = playIcon;
+            });
+
+            // --- Animation on Scroll Logic ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15 // Trigger when 15% of the element is visible
+            });
+
+            const elementsToAnimate = document.querySelectorAll('.fade-in');
+            elementsToAnimate.forEach((el) => observer.observe(el));
+
+            
+            // --- New Parallax Scroll Effect ---
+            // We listen for the 'scroll' event on the entire window
+            window.addEventListener('scroll', () => {
+                const bg = document.querySelector('.hero-background');
+                const scrollY = window.scrollY;
+
+                if (bg) {
+                    // This moves the background down at 50% the speed of the scroll
+                    // This creates the parallax effect. You can change 0.5 to 0.3 for a slower effect.
+                    bg.style.transform = `translateY(${scrollY * 0.5}px)`;
+                }
+            });
+
+
+        });
+    </script>
+
+    <!-- Pageclip Script (must be last) --><script src="https.s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+
+</body>
+</html>
