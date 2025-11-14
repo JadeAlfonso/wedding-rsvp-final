@@ -102,7 +102,6 @@
         
         .name-john {
             text-align: right; /* <-- UPDATED: As per your request */
-            /* transform: translateX(18vw); -- REMOVED */
         }
 
         .ampersand {
@@ -769,11 +768,6 @@
 
         <form action="https://send.pageclip.co/TFpvOufmu62uxqQrJlKLWILsVD7xz49I/Wedding-RSVP" class="pageclip-form rsvp-form-container fade-in" method="post">
             
-            <!-- 
-              FIX FOR 404 ERROR (REMOVED): 
-              The hidden redirect input has been removed to let the JavaScript work.
-            -->
-
             <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" required />
@@ -893,29 +887,30 @@
             });
 
             
-            // --- NEW: Pageclip Success Message Logic ---
+            // --- NEW & FINAL FIX FOR 404 ERROR ---
             const rsvpForm = document.querySelector('.pageclip-form');
             const successMessage = document.getElementById('success-message');
             const guestNameSpan = document.getElementById('guest-name');
             
+            // 1. Listen for the form SUBMIT event
+            if (rsvpForm) {
+                rsvpForm.addEventListener('submit', (e) => {
+                    // 2. STOP the browser from redirecting (This is the fix!)
+                    e.preventDefault();
+                });
+            }
+
+            // 3. Listen for Pageclip's "success" event (which happens in the background)
             window.addEventListener('pageclip:success', (event) => {
-                // Check if the form and message elements exist
+                // 4. Run the "Thank You" message code
                 if (rsvpForm && successMessage && guestNameSpan) {
-                    // Get the 'name' from the submitted form data
                     const guestName = event.detail.data.name;
-                    
-                    // Set the guest's name in the success message
-                    // Use 'friend' as a fallback if no name is entered
                     guestNameSpan.textContent = guestName || 'friend'; 
-                    
-                    // Hide the form
                     rsvpForm.style.display = 'none';
-                    
-                    // Show the success message with a fade-in
                     successMessage.style.display = 'block';
                     setTimeout(() => {
                         successMessage.style.opacity = '1';
-                    }, 10); // A tiny delay to ensure the display:block applies first
+                    }, 10);
                 }
             });
             // --- END OF NEW SCRIPT ---
@@ -923,7 +918,7 @@
         });
     </script>
 
-    <!-- Pageclip Script (must be last) --><script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+    <!-- Pageclip Script (must be last) --><script src="httpss://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 
 </body>
 </html>
