@@ -856,9 +856,27 @@
                 }
             });
 
+            // --- I ADDED THIS NEW BLOCK RIGHT HERE ---
+            const rsvpForm = document.querySelector('.pageclip-form');
+            const successMessage = document.getElementById('success-message');
+            const guestNameSpan = document.getElementById('guest-name');
+            
+            window.addEventListener('pageclip:success', (event) => {
+                if (rsvpForm && successMessage && guestNameSpan) {
+                    const guestName = event.detail.data.name;
+                    guestNameSpan.textContent = guestName || 'friend'; 
+                    rsvpForm.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    setTimeout(() => {
+                        successMessage.style.opacity = '1';
+                    }, 10);
+                }
+            });
+            // --- END OF NEW SCRIPT ---
 
         });
     </script>
+
 
     <!-- Pageclip Script (must be last) --><script src="https.s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 
