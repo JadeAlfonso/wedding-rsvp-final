@@ -101,7 +101,8 @@
         .name-elaine { text-align: left; }
         
         .name-john {
-            text-align: right; /* Aligns John to the center (with &) */
+            text-align: right; /* <-- UPDATED: As per your request */
+            /* transform: translateX(18vw); -- REMOVED */
         }
 
         .ampersand {
@@ -112,8 +113,7 @@
             text-align: center; 
             margin: -15px 0; 
             padding: 0;
-            transform: translateX(2vw); /* This is your new value */
-
+            transform: translateX(2vw); /* <-- UPDATED: As per your request */
         }
 
         .date {
@@ -277,7 +277,8 @@
 
         .location-image img {
             width: 100%;
-            height: auto;
+            max-height: 450px; /* <-- FIX: Constrains image height */
+            object-fit: cover; /* <-- FIX: Prevents stretching */
             border-radius: 8px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.08);
             background-color: #f0efe8; /* Placeholder bg */
@@ -455,6 +456,30 @@
             background-color: #777;
         }
 
+        /* --- NEW: Style for the "Thank You" Message --- */
+        .rsvp-success-message {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            font-family: 'Lato', sans-serif;
+            color: #555;
+            width: 100%;
+            padding: 40px 20px;
+            background: #f7f3ed;
+            border: 1px solid #e0d9d0;
+            border-radius: 8px;
+            opacity: 0; /* Start hidden for fade-in */
+            transition: opacity 0.5s ease-in-out;
+        }
+        .rsvp-success-message h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        /* --- END OF NEW STYLES --- */
+
+
         /* --- Animation on Scroll --- */
         .fade-in {
             opacity: 0;
@@ -518,6 +543,7 @@
             
             .ampersand {
                 margin: -10px 0; 
+                transform: none; /* <-- ADDED: Resets the ampersand on mobile */
             }
 
             .date {
@@ -671,15 +697,15 @@
         
         <!-- Entry for the Reception (now in its own section) --><div class="location-entry fade-in">
             <div class="location-image">
-                <a href="https://www.google.com/maps?sca_esv=be9bcadcc598f779&rlz=1C1WBCC_enPH1084PH1084&output=search&q=146+J.P.+Rizal+St.+San+Gabriel+3022+Santa+Maria,+Bulacan&source=lnms&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZMLQ4RPdPjLPmOakFCN7X8CDeRd7MSf3QLuh-Ogt4OB5y4-wxjrYUFy9kPDMzOULSyyXiNII_xhJX84-a4N5bwPI3rMOb-8OhiELlIiHyylGa02AW_oYufEe7M5O7YScyJ9h2JReKXYe_gPzHeXDQG2gGMq_oy1H5FOKqZiSOqGpX1MYZ_6cYaiq6PXCc86aBfAV8GQ&entry=mc&ved=1t:200715&ictx=111" target="_blank" rel="noopener noreferrer"> <!-- Add your reception maps link here --><img src="reception-picture.png" alt="Reception Venue"
+                <a href="#" target="_blank" rel="noopener noreferrer"> <!-- Add your reception maps link here --><img src="reception-picture.png" alt="Reception Venue"
                         onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Reception+Venue'">
                 </a>
             </div>
             <div class="location-info">
                 <h3>RECEPTION</h3>
-                <h4>ANGEL GABRIEL GARDEN</h4>
-                <p>3:00 PM</p>
-                <p>146 J.P. Rizal St. San Gabriel 3022 Santa Maria, Bulacan>
+                <h4>[RECEPTION VENUE NAME]</h4>
+                <p>[TIME, e.g., 2:00 PM]</p>
+                <p>[Address of Reception Venue]</p>
             </div>
         </div>
 
@@ -702,7 +728,7 @@
         <div class="reminders-grid">
             <!-- Reminder Card 1: NOTE ON GIFTS --><div class="reminder-card fade-in">
                 <!-- Replaced SVG with <img> tag -->
-                <img src="https://placehold.co/80x80/fcfaf5/777?text=Gift" alt="Note on Gifts"
+                <img src="httpsG://placehold.co/80x80/fcfaf5/777?text=Gift" alt="Note on Gifts"
                      onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Gift'">
                 <h3>NOTE ON GIFTS</h3>
                 <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
@@ -710,7 +736,7 @@
 
             <!-- Reminder Card 2: UNPLUGGED --><div class="reminder-card fade-in">
                 <!-- Replaced SVG with <img> tag -->
-                <img src="https://placehold.co/80x80/fcfaf5/777?text=Unplugged" alt="Unplugged Ceremony"
+                <img src="httpsG://placehold.co/80x80/fcfaf5/777?text=Unplugged" alt="Unplugged Ceremony"
                      onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Unplugged'">
                 <h3>UNPLUGGED</h3>
                 <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
@@ -718,7 +744,7 @@
 
             <!-- Reminder Card 3: RSVP --><div class="reminder-card fade-in">
                 <!-- Replaced SVG with <img> tag -->
-                <img src="https://placehold.co/80x80/fcfaf5/777?text=RSVP" alt="RSVP"
+                <img src="httpsG://placehold.co/80x80/fcfaf5/777?text=RSVP" alt="RSVP"
                      onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=RSVP'">
                 <h3>RSVP</h3>
                 <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
@@ -743,6 +769,11 @@
 
         <form action="https://send.pageclip.co/TFpvOufmu62uxqQrJlKLWILsVD7xz49I/Wedding-RSVP" class="pageclip-form rsvp-form-container fade-in" method="post">
             
+            <!-- 
+              FIX FOR 404 ERROR (REMOVED): 
+              The hidden redirect input has been removed to let the JavaScript work.
+            -->
+
             <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" required />
@@ -768,6 +799,13 @@
                 <span>Send RSVP</span>
             </button>
         </form>
+        
+        <!-- NEW: "Thank You" Message (Starts hidden) -->
+        <div id="success-message" class="rsvp-success-message fade-in" style="display: none;">
+            <h3>Thank You, <span id="guest-name"></span>!</h3>
+            <p>Your RSVP has been sent. We can't wait to celebrate with you!</p>
+        </div>
+        
         <!-- No scroll-down button here, as it's the last page --></section>
 
     <!-- 
@@ -780,7 +818,7 @@
         Your browser does not support the audio element.
     </audio>
     <button id="music-toggle">
-        <!-- SVG icon for 'Play' --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        <!-- SVG icon for 'Play' --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
     </button>
 
 
@@ -813,7 +851,7 @@
                     music.pause();
                     toggleBtn.innerHTML = playIcon;
                 } else {
-                    music.play().then(() => {
+                    music.play().then(() => { 
                         toggleBtn.innerHTML = muteIcon;
                     }).catch(error => {
                         console.log("Audio play was prevented by browser: ", error);
@@ -844,32 +882,40 @@
 
             
             // --- New Parallax Scroll Effect ---
-            // We listen for the 'scroll' event on the entire window
             window.addEventListener('scroll', () => {
                 const bg = document.querySelector('.hero-background');
                 const scrollY = window.scrollY;
 
                 if (bg) {
                     // This moves the background down at 50% the speed of the scroll
-                    // This creates the parallax effect. You can change 0.5 to 0.3 for a slower effect.
                     bg.style.transform = `translateY(${scrollY * 0.5}px)`;
                 }
             });
 
-            // --- I ADDED THIS NEW BLOCK RIGHT HERE ---
+            
+            // --- NEW: Pageclip Success Message Logic ---
             const rsvpForm = document.querySelector('.pageclip-form');
             const successMessage = document.getElementById('success-message');
             const guestNameSpan = document.getElementById('guest-name');
             
             window.addEventListener('pageclip:success', (event) => {
+                // Check if the form and message elements exist
                 if (rsvpForm && successMessage && guestNameSpan) {
+                    // Get the 'name' from the submitted form data
                     const guestName = event.detail.data.name;
+                    
+                    // Set the guest's name in the success message
+                    // Use 'friend' as a fallback if no name is entered
                     guestNameSpan.textContent = guestName || 'friend'; 
+                    
+                    // Hide the form
                     rsvpForm.style.display = 'none';
+                    
+                    // Show the success message with a fade-in
                     successMessage.style.display = 'block';
                     setTimeout(() => {
                         successMessage.style.opacity = '1';
-                    }, 10);
+                    }, 10); // A tiny delay to ensure the display:block applies first
                 }
             });
             // --- END OF NEW SCRIPT ---
@@ -877,8 +923,7 @@
         });
     </script>
 
-
-    <!-- Pageclip Script (must be last) --><script src="https.s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+    <!-- Pageclip Script (must be last) --><script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 
 </body>
 </html>
