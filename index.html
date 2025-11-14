@@ -455,28 +455,8 @@
             background-color: #777;
         }
 
-        /* --- NEW: Style for the "Thank You" Message --- */
-        .rsvp-success-message {
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            font-family: 'Lato', sans-serif;
-            color: #555;
-            width: 100%;
-            padding: 40px 20px;
-            background: #f7f3ed;
-            border: 1px solid #e0d9d0;
-            border-radius: 8px;
-            opacity: 0; /* Start hidden for fade-in */
-            transition: opacity 0.5s ease-in-out;
-        }
-        .rsvp-success-message h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            color: #333;
-            margin-bottom: 15px;
-        }
-        /* --- END OF NEW STYLES --- */
+        /* --- REMOVED: Old Success Message Style --- */
+        /* .rsvp-success-message { ... } */
 
 
         /* --- Animation on Scroll --- */
@@ -520,6 +500,38 @@
             height: 24px;
             stroke: #333;
         }
+        
+        /* --- NEW: RSVP "Toast" Notification Style --- */
+        #rsvp-toast {
+            position: fixed;
+            bottom: 30px; /* Position at bottom */
+            left: 50%;
+            transform: translate(-50%, 200%); /* Start hidden way below */
+            background-color: #333; /* Dark, elegant color */
+            color: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 200;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            transition: transform 0.5s ease-in-out; /* Smooth slide-in */
+        }
+        #rsvp-toast.show {
+            transform: translate(-50%, 0); /* Slide into view */
+        }
+        #rsvp-toast svg {
+            width: 24px;
+            height: 24px;
+            stroke: #4CAF50; /* Green checkmark */
+            stroke-width: 2.5;
+            flex-shrink: 0; /* Prevent icon from shrinking */
+        }
+        /* --- END OF NEW STYLES --- */
+
 
         /* --- Mobile Responsiveness --- */
         @media (max-width: 768px) {
@@ -586,6 +598,16 @@
             
             .name-john {
                 transform: none; /* THIS is the rule that handles it dynamically on mobile */
+            }
+            
+            #rsvp-toast {
+                bottom: 20px;
+                width: calc(100% - 40px); /* Full width on mobile with padding */
+                left: 20px;
+                transform: translate(0, 200%); /* Start hidden way below */
+            }
+            #rsvp-toast.show {
+                transform: translate(0, 0); /* Slide into view */
             }
         }
     </style>
@@ -697,7 +719,7 @@
         <!-- Entry for the Reception (now in its own section) --><div class="location-entry fade-in">
             <div class="location-image">
                 <a href="#" target="_blank" rel="noopener noreferrer"> <!-- Add your reception maps link here --><img src="reception-picture.png" alt="Reception Venue"
-                        onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Reception+Venue'">
+                        onerror="this.src='https{placehold.co/500x400/F0EFE8/999?text=Reception+Venue'">
                 </a>
             </div>
             <div class="location-info">
@@ -727,7 +749,7 @@
         <div class="reminders-grid">
             <!-- Reminder Card 1: NOTE ON GIFTS --><div class="reminder-card fade-in">
                 <!-- Replaced SVG with <img> tag -->
-                <img src="httpsG://placehold.co/80x80/fcfaf5/777?text=Gift" alt="Note on Gifts"
+                <img src="https://placehold.co/80x80/fcfaf5/777?text=Gift" alt="Note on Gifts"
                      onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Gift'">
                 <h3>NOTE ON GIFTS</h3>
                 <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
@@ -735,7 +757,7 @@
 
             <!-- Reminder Card 2: UNPLUGGED --><div class="reminder-card fade-in">
                 <!-- Replaced SVG with <img> tag -->
-                <img src="httpsG://placehold.co/80x80/fcfaf5/777?text=Unplugged" alt="Unplugged Ceremony"
+                <img src="https://placehold.co/80x80/fcfaf5/777?text=Unplugged" alt="Unplugged Ceremony"
                      onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Unplugged'">
                 <h3>UNPLUGGED</h3>
                 <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
@@ -743,7 +765,7 @@
 
             <!-- Reminder Card 3: RSVP --><div class="reminder-card fade-in">
                 <!-- Replaced SVG with <img> tag -->
-                <img src="httpsG://placehold.co/80x80/fcfaf5/777?text=RSVP" alt="RSVP"
+                <img src="https://placehold.co/80x80/fcfaf5/777?text=RSVP" alt="RSVP"
                      onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=RSVP'">
                 <h3>RSVP</h3>
                 <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
@@ -794,11 +816,10 @@
             </button>
         </form>
         
-        <!-- NEW: "Thank You" Message (Starts hidden) -->
-        <div id="success-message" class="rsvp-success-message fade-in" style="display: none;">
-            <h3>Thank You, <span id="guest-name"></span>!</h3>
-            <p>Your RSVP has been sent. We can't wait to celebrate with you!</p>
-        </div>
+        <!-- 
+            REMOVED: Old "Thank You" Message
+            <div id="success-message" ...>
+        -->
         
         <!-- No scroll-down button here, as it's the last page --></section>
 
@@ -814,6 +835,12 @@
     <button id="music-toggle">
         <!-- SVG icon for 'Play' --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
     </button>
+
+    <!-- NEW: RSVP "Toast" Notification (starts hidden) -->
+    <div id="rsvp-toast">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        <span>Thank You! Your RSVP has been sent.</span>
+    </div>
 
 
     <!-- All the JavaScript is placed inside this <script> tag --><script>
@@ -887,10 +914,9 @@
             });
 
             
-            // --- NEW & FINAL FIX FOR 404 ERROR ---
+            // --- NEW & FINAL FIX FOR 404 ERROR (with Toast) ---
             const rsvpForm = document.querySelector('.pageclip-form');
-            const successMessage = document.getElementById('success-message');
-            const guestNameSpan = document.getElementById('guest-name');
+            const toast = document.getElementById('rsvp-toast'); // Get the new toast element
             
             // 1. Listen for the form SUBMIT event
             if (rsvpForm) {
@@ -902,15 +928,18 @@
 
             // 3. Listen for Pageclip's "success" event (which happens in the background)
             window.addEventListener('pageclip:success', (event) => {
-                // 4. Run the "Thank You" message code
-                if (rsvpForm && successMessage && guestNameSpan) {
-                    const guestName = event.detail.data.name;
-                    guestNameSpan.textContent = guestName || 'friend'; 
-                    rsvpForm.style.display = 'none';
-                    successMessage.style.display = 'block';
+                // 4. Run the "Thank You" toast notification code
+                if (rsvpForm && toast) {
+                    // 1. Reset the form for the next submission
+                    rsvpForm.reset(); 
+                    
+                    // 2. Show the toast
+                    toast.classList.add('show');
+                    
+                    // 3. Hide the toast after 5 seconds
                     setTimeout(() => {
-                        successMessage.style.opacity = '1';
-                    }, 10);
+                        toast.classList.remove('show');
+                    }, 5000); // 5 seconds
                 }
             });
             // --- END OF NEW SCRIPT ---
@@ -918,7 +947,7 @@
         });
     </script>
 
-    <!-- Pageclip Script (must be last) --><script src="httpss://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
+    <!-- Pageclip Script (must be last) --><script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 
 </body>
 </html>
