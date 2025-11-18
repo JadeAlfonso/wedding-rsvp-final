@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elaine & John's Wedding</title>
-    <!-- We are including the fonts directly in the HTML head --><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Lato:wght@300;400&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <!-- We are including the fonts directly in the HTML head -->
+    <!-- NEW: Added IBM Plex Mono for the new section -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Lato:wght@300;400&family=Dancing+Script:wght@700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     
     <!-- Pageclip Stylesheet --><link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
 
@@ -101,7 +103,7 @@
         .name-elaine { text-align: left; }
         
         .name-john {
-            text-align: right; /* <-- UPDATED: As per your request */
+            text-align: right; 
         }
 
         .ampersand {
@@ -112,14 +114,15 @@
             text-align: center; 
             margin: -15px 0; 
             padding: 0;
-            transform: translateX(2vw); /* <-- UPDATED: As per your request */
+            transform: translateX(2vw); 
         }
 
         .date {
             position: absolute;
             bottom: 5%;
             left: 5%;
-            font-size: clamp(0.875rem, 2vw, 1rem);
+            /* UPDATED: Made the date bigger */
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
         }
 
         .invite-text {
@@ -163,6 +166,22 @@
             border-bottom: 2px solid #888;
             border-right: 2px solid #888;
         }
+        
+        /* NEW: Version for dark backgrounds */
+        .scroll-down.light-on-dark {
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+            margin-top: 60px;
+        }
+        .scroll-down.light-on-dark a { color: #aaa; }
+        .scroll-down.light-on-dark .chevrons span {
+            border-bottom: 2px solid #aaa;
+            border-right: 2px solid #aaa;
+        }
+        /* END NEW */
+
 
         .scroll-down .chevrons {
             margin-top: 10px;
@@ -272,9 +291,10 @@
             flex: 1; 
             min-width: 300px;
             max-width: 500px;
+            text-align: center; /* Ensures QR code centers below */
         }
 
-        .location-image img {
+        .location-image img.main-img {
             width: 100%;
             max-height: 450px; /* <-- FIX: Constrains image height */
             object-fit: cover; /* <-- FIX: Prevents stretching */
@@ -284,10 +304,41 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .location-image a:hover img {
+        .location-image a:hover img.main-img {
             transform: scale(1.03);
             box-shadow: 0 10px 30px rgba(0,0,0,0.12);
         }
+        
+        /* --- NEW: QR Code Section Style --- */
+        .qr-container {
+            margin-top: 25px;
+            text-align: center;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+        }
+        .qr-container:hover {
+            opacity: 1;
+        }
+        
+        .qr-code {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border-radius: 4px;
+            background-color: #fff; /* White bg for QR */
+            padding: 5px; /* White border effect */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .qr-label {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            margin-top: 8px;
+            color: #888;
+            text-transform: uppercase;
+        }
+        /* --- END NEW --- */
 
         .location-info {
             flex: 1; 
@@ -329,45 +380,83 @@
             text-align: left;
         }
         
-        /* --- SECTION 5: REMINDERS --- */
-        #reminders {
-            background-color: #fcfaf5;
-            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
-            border-top: 1px solid #f0e9e1;
-            padding-bottom: 80px; /* Added more padding for scroll down button */
+        /* --- SECTION 5: INVITATION DETAILS (Was Reminders) --- */
+        #invitation-details {
+            background-color: #3a3a3a;
+            background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            border-top: 1px solid #4a4a4a;
+            color: #e0e0e0;
+            font-family: 'IBM Plex Mono', monospace;
         }
         
-        .reminders-grid {
+        .invitation-container {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             gap: 40px;
-            max-width: 1000px;
+            max-width: 1200px;
             width: 100%;
         }
 
-        .reminder-card {
+        .invite-logo, .invite-text-details {
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+        }
+        
+        .invite-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        .invite-logo {
             text-align: center;
-            max-width: 300px;
-            padding: 20px;
-            background: transparent;
+        }
+        .invite-logo h3 { /* "THE WEDDING OF" */
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        .invite-logo h2 { /* "Elaine and John" */
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.5rem, 8vw, 3.5rem);
+            color: #fff;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .invite-logo p { /* Date and Location */
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        .invite-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .invite-text-details {
+            font-size: 0.95rem;
+            line-height: 1.9;
+            color: #ccc;
+        }
+        .invite-text-details strong {
+            color: #fff;
+            font-weight: 500;
+        }
+        .invite-text-details p {
+            margin-bottom: 20px; /* Space between paragraphs */
         }
 
-        .reminder-card svg {
-            width: 80px;
-            height: 80px;
-            stroke: #5d5d5d; /* Icon color */
-            stroke-width: 1.5;
-            margin-bottom: 25px;
-            fill: none; /* No fill by default for line art */
-        }
-
-        .reminder-card img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain; /* Keeps your image aspect ratio */
-            margin-bottom: 25px;
-        }
+        /* --- END OF NEW STYLES --- */
 
 
         /* --- SECTION 6: RSVP --- */
@@ -386,6 +475,8 @@
             color: #555;
             width: 100%;
             padding: 0 20px; /* Padding for form container */
+            position: relative; /* Needed for the new overlay */
+            overflow: hidden; /* Hide overlay when not active */
         }
 
         .form-group {
@@ -454,9 +545,40 @@
         .pageclip-form__submit--loading {
             background-color: #777;
         }
-
-        /* --- REMOVED: Old Success Message Style --- */
-        /* .rsvp-success-message { ... } */
+        
+        /* --- NEW: RSVP "Thank You" Overlay Style --- */
+        .rsvp-form__overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            visibility: hidden; /* Start hidden */
+            opacity: 0;
+            transition: opacity 0.4s ease-out, visibility 0.4s;
+            
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: #333;
+            text-align: center;
+        }
+        
+        .rsvp-form__overlay.show {
+            visibility: visible;
+            opacity: 1;
+        }
+        
+        .rsvp-form__overlay.error-message {
+            color: #D32F2F; /* Red for error */
+            font-size: 1.5rem;
+            line-height: 1.4;
+        }
+        /* --- END OF NEW STYLES --- */
 
 
         /* --- Animation on Scroll --- */
@@ -501,53 +623,8 @@
             stroke: #333;
         }
         
-        /* --- NEW: RSVP "Toast" Notification Style --- */
-        #rsvp-toast {
-            position: fixed;
-            bottom: 30px; /* Position at bottom */
-            left: 50%;
-            transform: translate(-50%, 200%); /* Start hidden way below */
-            background-color: #333; /* Dark, elegant color */
-            color: white;
-            padding: 16px 24px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            z-index: 200;
-            font-family: 'Lato', sans-serif;
-            font-size: 1rem;
-            transition: transform 0.5s ease-in-out; /* Smooth slide-in */
-            
-            /* NEW: Styles for error state */
-            background-color: #D32F2F; /* Red for error */
-            visibility: hidden; /* Use visibility instead of display */
-            opacity: 0;
-            transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out, visibility 0.5s;
-        }
-        #rsvp-toast.show {
-            transform: translate(-50%, 0); /* Slide into view */
-            visibility: visible;
-            opacity: 1;
-        }
-        /* NEW: Success state style */
-        #rsvp-toast.success {
-            background-color: #333; /* Back to dark for success */
-        }
-        
-        #rsvp-toast svg {
-            width: 24px;
-            height: 24px;
-            stroke: #4CAF50; /* Green checkmark */
-            stroke-width: 2.5;
-            flex-shrink: 0; /* Prevent icon from shrinking */
-        }
-        /* NEW: Icon for error state */
-        #rsvp-toast.error svg {
-            stroke: #FFCDD2; /* Light red X */
-        }
-        
+        /* --- REMOVED: RSVP "Toast" Notification Style --- */
+        /* #rsvp-toast { ... } */
 
 
         /* --- Mobile Responsiveness --- */
@@ -561,7 +638,8 @@
             }
 
             .names-container {
-                top: 35%; /* Adjusted from 30% */
+                /* UPDATED: Moved from 35% to 28% to match desktop change */
+                top: 28%; 
                 width: 95vw; 
             }
 
@@ -617,15 +695,18 @@
                 transform: none; /* THIS is the rule that handles it dynamically on mobile */
             }
             
-            #rsvp-toast {
-                bottom: 20px;
-                width: calc(100% - 40px); /* Full width on mobile with padding */
-                left: 20px;
-                transform: translate(0, 200%); /* Start hidden way below */
+            /* --- NEW: Mobile styles for invitation page --- */
+            .invitation-container {
+                flex-direction: column; /* Stack vertically */
+                gap: 40px;
             }
-            #rsvp-toast.show {
-                transform: translate(0, 0); /* Slide into view */
+            .invite-logo, .invite-text-details {
+                text-align: center;
+                max-width: 400px;
             }
+            /* --- END NEW --- */
+            
+            /* --- REMOVED: RSVP Toast mobile styles --- */
         }
     </style>
 </head>
@@ -705,9 +786,17 @@
         <!-- Entry for the Ceremony --><div class="location-entry fade-in">
             <div class="location-image">
                 <a href="https://maps.google.com/maps?q=St.+Gabriel+the+Archangel+Parish+Church+Santa+Maria+Bulacan" target="_blank" rel="noopener noreferrer">
-                    <img src="ceremony-picture.png" alt="St. Gabriel the Archangel Parish Church"
+                    <img src="ceremony-picture.png" alt="St. Gabriel the Archangel Parish Church" class="main-img"
                         onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Ceremony+Venue'">
                 </a>
+                
+                <!-- NEW: Placeholder QR Code for Ceremony -->
+                <div class="qr-container">
+                    <img src="ceremony-qr.png" alt="Scan for Map" class="qr-code"
+                         onerror="this.src='https://placehold.co/150x150/e0e0e0/333?text=QR+Code'">
+                    <p class="qr-label">SCAN FOR MAP</p>
+                </div>
+                
             </div>
             <div class="location-info">
                 <h3>MARRIAGE CEREMONY</h3>
@@ -735,10 +824,18 @@
         
         <!-- Entry for the Reception (now in its own section) --><div class="location-entry fade-in">
             <div class="location-image">
-                <a href="" target="_blank" rel="noopener noreferrer"> <!-- Add your reception maps link here --><!-- FIX: Changed httpsG to https -->
-                    <img src="reception-picture.png" alt="Reception Venue"
+                <a href="https://www.google.com/maps?sca_esv=e78dc78310738fde&rlz=1C1WBCC_enPH1084PH1084&output=search&q=146+J.P.+Rizal+St.+San+Gabriel+3022+Santa+Maria,+Bulacan&source=lnms&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZMLQ4RPdPjLPmOakFCN7X8CDeRd7MSf3QLuh-Ogt4OB5y4-wxjrYUFy9kPDMzOULSyyXiNII_xhJX84-a4N5bwPI3rMOb-8OhiELlIiHyylGa02AW_oYufEe7M5O7YScyJ9h2JReKXYe_gPzHeXDQG2gGMq_oy1H5FOKqZiSOqGpX1MYZ_6cYaiq6PXCc86aBfAV8GQ&entry=mc&ved=1t:200715&ictx=111" target="_blank" rel="noopener noreferrer"> 
+                    <img src="reception-picture.png" alt="Reception Venue" class="main-img"
                         onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Reception+Venue'">
                 </a>
+                
+                <!-- NEW: Placeholder QR Code for Reception -->
+                <div class="qr-container">
+                    <img src="reception-qr.png" alt="Scan for Map" class="qr-code"
+                         onerror="this.src='https://placehold.co/150x150/e0e0e0/333?text=QR+Code'">
+                    <p class="qr-label">SCAN FOR MAP</p>
+                </div>
+                
             </div>
             <div class="location-info">
                 <h3>RECEPTION</h3>
@@ -749,7 +846,7 @@
         </div>
 
         <div class="scroll-down dark fade-in">
-            <a href="#reminders"> <!-- Points to Page 5 (Reminders) --><span>SCROLL DOWN</span>
+            <a href="#invitation-details"> <!-- UPDATED: Points to Page 5 (Invitation Details) --><span>SCROLL DOWN</span>
                 <div class="chevrons">
                     <span></span>
                     <span></span>
@@ -760,37 +857,42 @@
     </section>
     
     <!-- 
-      SECTION 5: "REMINDERS" (Redesigned)
-    --><section id="reminders" class="fullscreen-page">
-        <h2 class="page-title fade-in">THE CEREMONY</h2>
+      SECTION 5: "INVITATION DETAILS" (Was Reminders)
+    --><section id="invitation-details" class="fullscreen-page">
         
-        <div class="reminders-grid">
-            <!-- Reminder Card 1: NOTE ON GIFTS --><div class="reminder-card fade-in">
-                <!-- Replaced SVG with <img> tag --><!-- FIX: Changed httpsG to https -->
-                <img src="https://placehold.co/80x80/fcfaf5/777?text=Gift" alt="Note on Gifts"
-                     onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Gift'">
-                <h3>NOTE ON GIFTS</h3>
-                <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
+        <div class="invitation-container fade-in">
+            <!-- Left Column: Logo -->
+            <div class="invite-logo">
+                <h3>THE WEDDING OF</h3>
+                <h2>Elaine and John</h2>
+                <p>02.19.26</p>
+                <p>ANGEL GABRIEL GARDEN</p>
             </div>
-
-            <!-- Reminder Card 2: UNPLUGGED --><div class="reminder-card fade-in">
-                <!-- Replaced SVG with <img> tag --><!-- FIX: Changed httpsG to https -->
-                <img src="https://placehold.co/80x80/fcfaf5/777?text=Unplugged" alt="Unplugged Ceremony"
-                     onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=Unplugged'">
-                <h3>UNPLUGGED</h3>
-                <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
+            
+            <!-- Center Column: Image -->
+            <div class="invite-image">
+                <img src="https://placehold.co/400x500/5a5a5a/e0e0e0?text=Elaine+%26+John" alt="Elaine and John"
+                     onerror="this.src='https://placehold.co/400x500/5a5a5a/e0e0e0?text=Elaine+%26+John'">
             </div>
-
-            <!-- Reminder Card 3: RSVP --><div class="reminder-card fade-in">
-                <!-- Replaced SVG with <img> tag --><!-- FIX: Changed httpsG to https -->
-                <img src="https://placehold.co/80x80/fcfaf5/777?text=RSVP" alt="RSVP"
-                     onerror="this.src='https://placehold.co/80x80/fcfaf5/777?text=RSVP'">
-                <h3>RSVP</h3>
-                <p>We've chosen to have a simple civil wedding with our closest family and friends at the Bandaluyong City Hall.</p>
+            
+            <!-- Right Column: Details -->
+            <div class="invite-text-details">
+                <p>
+                    February 19, 2026 | 1:00 pm<br>
+                    Sta. Maria, Bulacan<br>
+                    cordially invite you to<br>
+                    their wedding celebration<br>
+                    <strong>St. Gabriel the archangel parish church</strong>
+                </p>
+                <p>
+                    Reception to follow at 3:00 PM<br>
+                    <strong>ANGEL GABRIEL GARDEN</strong><br>
+                    Sta. Maria, Bulacan
+                </p>
             </div>
         </div>
 
-        <div class="scroll-down dark fade-in">
+        <div class="scroll-down light-on-dark fade-in">
             <a href="#rsvp"> <!-- Points to Page 6 (RSVP) --><span>SCROLL DOWN</span>
                 <div class="chevrons">
                     <span></span>
@@ -806,7 +908,7 @@
     --><section id="rsvp" class="fullscreen-page">
         <h2 class="page-title fade-in">Will You Be Joining Us?</h2>
 
-        <!-- FIX: Changed httpshttps to https in the action URL -->
+        
         <form action="https://send.pageclip.co/TFpvOufmu62uxqQrJlKLWILsVD7xz49I/Wedding-RSVP" class="pageclip-form rsvp-form-container fade-in" method="post">
             
             <div class="form-group">
@@ -833,12 +935,13 @@
             <button type="submit" class="pageclip-form__submit">
                 <span>Send RSVP</span>
             </button>
+            
+            <!-- NEW: "Thank You" Overlay (Starts hidden) -->
+            <div class="rsvp-form__overlay" id="rsvp-overlay">
+                <span id="rsvp-message-text">Thank you!</span>
+            </div>
+            
         </form>
-        
-        <!-- 
-            REMOVED: Old "Thank You" Message
-            <div id="success-message" ...>
-        -->
         
         <!-- No scroll-down button here, as it's the last page --></section>
 
@@ -855,13 +958,8 @@
         <!-- SVG icon for 'Play' --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
     </button>
 
-    <!-- NEW: RSVP "Toast" Notification (starts hidden) -->
-    <div id="rsvp-toast">
-        <!-- Icon will be changed by JS -->
-        <svg id="toast-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"></svg>
-        <span id="toast-message"></span>
-    </div>
-
+    <!-- REMOVED: RSVP "Toast" Notification -->
+    
 
     <!-- All the JavaScript is placed inside this <script> tag --><script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -871,7 +969,6 @@
             
             // SVG icons for play and mute
             const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
-            // FIX: Added a space in the muteIcon SVG string
             const muteIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
 
             let isPlaying = false;
@@ -910,9 +1007,12 @@
             // --- Animation on Scroll Logic ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
+                    // NOW: Check if it's intersecting (scrolling in) or not (scrolling out)
                     if (entry.isIntersecting) {
                         entry.target.classList.add('show');
-                        observer.unobserve(entry.target);
+                    } else {
+                        // This is the new part: remove 'show' when it's not on screen
+                        entry.target.classList.remove('show');
                     }
                 });
             }, {
@@ -935,11 +1035,10 @@
             });
 
             
-            // --- NEW & FINAL FIX FOR 404 ERROR (with Toast) ---
+            // --- NEW: RSVP Overlay Logic ---
             const rsvpForm = document.querySelector('.pageclip-form');
-            const toast = document.getElementById('rsvp-toast'); // Get the new toast element
-            const toastIcon = document.getElementById('toast-icon');
-            const toastMessage = document.getElementById('toast-message');
+            const rsvpOverlay = document.getElementById('rsvp-overlay');
+            const rsvpMessageText = document.getElementById('rsvp-message-text');
             
             // 1. Listen for the form SUBMIT event
             if (rsvpForm) {
@@ -949,31 +1048,32 @@
                 });
             }
 
-            // --- Function to show the toast notification ---
-            let toastTimer;
-            function showToast(message, isSuccess = true) {
-                if (!toast || !toastIcon || !toastMessage) return;
+            // --- Function to show the overlay message ---
+            let overlayTimer;
+            function showOverlayMessage(message, isSuccess = true) {
+                if (!rsvpOverlay || !rsvpMessageText) return;
 
                 // Clear any existing timer
-                clearTimeout(toastTimer);
+                clearTimeout(overlayTimer);
 
                 // Set content and style
-                toastMessage.textContent = message;
+                rsvpMessageText.textContent = message;
                 if (isSuccess) {
-                    toast.className = 'success'; // Use class for styling
-                    toastIcon.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>'; // Checkmark
+                    rsvpOverlay.classList.remove('error-message');
                 } else {
-                    toast.className = 'error'; // Use class for styling
-                    toastIcon.innerHTML = '<line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line>'; // 'X' icon
+                    rsvpOverlay.classList.add('error-message');
                 }
                 
-                // Show the toast
-                toast.classList.add('show');
+                // Show the overlay
+                rsvpOverlay.classList.add('show');
                 
-                // Hide the toast after 5 seconds
-                toastTimer = setTimeout(() => {
-                    toast.classList.remove('show');
-                }, 5000); // 5 seconds
+                // If it's an ERROR, hide it after 5 seconds so they can try again
+                if (!isSuccess) {
+                    overlayTimer = setTimeout(() => {
+                        rsvpOverlay.classList.remove('show');
+                    }, 5000); // 5 seconds
+                }
+                // If it's a SUCCESS, it stays visible.
             }
 
             // 3. Listen for Pageclip's "success" event (which happens in the background)
@@ -981,14 +1081,14 @@
                 if (rsvpForm) {
                     rsvpForm.reset(); // Reset form for next user
                 }
-                showToast("Thank You! Your RSVP has been sent.", true);
+                showOverlayMessage("Thank you!", true);
             });
             
             // 4. NEW: Listen for Pageclip's "error" event
             window.addEventListener('pageclip:error', (event) => {
                 console.error("Pageclip error: ", event.detail.error);
                 // Show a user-friendly error message
-                showToast("Error: Submission blocked (please try again later).", false);
+                showOverlayMessage("Error: Submission blocked.\nPlease try again later.", false);
             });
             // --- END OF NEW SCRIPT ---
 
