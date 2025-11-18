@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elaine & John's Wedding</title>
-    <!-- We are including the fonts directly in the HTML head -->
-    <!-- NEW: Added IBM Plex Mono for the new section -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;700&family=Lato:wght@300;400&family=Dancing+Script:wght@700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Lato:wght@300;400&family=Dancing+Script:wght@700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Pageclip Stylesheet --><link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
+    <!-- Pageclip Stylesheet -->
+    <link rel="stylesheet" href="https://s.pageclip.co/v1/pageclip.css" media="screen">
 
-    <!-- All the CSS styles are placed inside this <style> tag --><style>
+    <style>
         /* --- Basic Setup --- */
         * {
             margin: 0;
@@ -19,16 +19,15 @@
         }
 
         html {
-            /* This makes the "SCROLL DOWN" link scroll smoothly */
             scroll-behavior: smooth;
         }
 
         body {
             font-family: 'Lato', sans-serif;
-            background-color: #fcfaf5; /* Set new default background */
-            color: #555; /* Slightly darker text for readability */
+            background-color: #fcfaf5;
+            color: #555;
             line-height: 1.6;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 {
@@ -36,47 +35,45 @@
             font-weight: 400;
         }
         
-        /* Helper class for full-height pages */
+        /* Fullscreen Page Helper */
         .fullscreen-page {
-            min-height: 100vh; /* Page is AT LEAST screen height */
+            min-height: 100vh;
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 100px 20px; /* Base padding */
+            padding: 100px 20px;
             position: relative;
-            overflow: hidden; /* Hide overflow on the page itself */
+            overflow: hidden;
         }
 
-        /* --- Section 1: Hero (Landing Page) --- */
+        /* --- SECTION 1: HERO --- */
         #hero {
-            height: 100vh; /* Hero is always 100vh */
+            height: 100vh;
             width: 100%;
             position: relative;
             overflow: hidden;
-            /* background-image is removed from here */
             box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.4);
-            padding: 0; /* Hero doesn't need the same padding */
+            padding: 0;
         }
 
-        /* This new element will hold the background image for the parallax effect */
         .hero-background {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%; /* Start at 100% height */
+            height: 100%;
             background-image: url('image_0e0683.jpg');
             background-size: cover;
             background-position: center;
-            z-index: -1; /* Sit behind the content */
-            will-change: transform; /* Performance hint for the browser */
+            z-index: -1;
+            will-change: transform;
         }
 
         .hero-content {
             position: relative;
-            z-index: 1; /* Make sure content is on top of the background */
+            z-index: 1;
             height: 100%;
             width: 100%;
             color: white;
@@ -84,10 +81,9 @@
             letter-spacing: 1px;
         }
 
-        /* New container for the names */
         .names-container {
             position: absolute;
-            top: 22%; 
+            top: 23%; 
             left: 50%;
             transform: translate(-50%, -50%);
             width: clamp(300px, 90vw, 1100px); 
@@ -101,10 +97,7 @@
         }
         
         .name-elaine { text-align: left; }
-        
-        .name-john {
-            text-align: right; 
-        }
+        .name-john { text-align: right; }
 
         .ampersand {
             font-family: 'Cormorant Garamond', serif;
@@ -121,7 +114,7 @@
             position: absolute;
             bottom: 5%;
             left: 5%;
-            font-size: clamp(0.875rem, 2vw, 1rem);
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
         }
 
         .invite-text {
@@ -133,9 +126,9 @@
             line-height: 1.5;
         }
 
-        /* --- Animated Scroll Button (General) --- */
+        /* --- Scroll Down Button --- */
         .scroll-down {
-            position: absolute; /* This is for the Hero page */
+            position: absolute;
             bottom: 5%;
             left: 50%;
             transform: translateX(-50%);
@@ -151,22 +144,19 @@
             text-transform: uppercase;
         }
         
-        /* Dark version for light pages */
         .scroll-down.dark {
-            position: relative; /* CHANGED: No longer sticks to bottom */
-            bottom: auto; /* CHANGED */
-            left: auto; /* CHANGED */
-            transform: none; /* CHANGED */
-            margin-top: 60px; /* CHANGED: Added space from content */
+            position: relative;
+            bottom: auto;
+            left: auto;
+            transform: none;
+            margin-top: 60px;
         }
-        
         .scroll-down.dark a { color: #888; }
         .scroll-down.dark .chevrons span {
             border-bottom: 2px solid #888;
             border-right: 2px solid #888;
         }
         
-        /* NEW: Version for dark backgrounds */
         .scroll-down.light-on-dark {
             position: relative;
             bottom: auto;
@@ -179,12 +169,8 @@
             border-bottom: 2px solid #aaa;
             border-right: 2px solid #aaa;
         }
-        /* END NEW */
 
-
-        .scroll-down .chevrons {
-            margin-top: 10px;
-        }
+        .scroll-down .chevrons { margin-top: 10px; }
 
         .scroll-down .chevrons span {
             display: block;
@@ -206,180 +192,166 @@
             100% { opacity: 0; transform: rotate(45deg) translate(10px, 10px); }
         }
 
-        /* --- Page Title Style (for sections) --- */
+        /* --- Page Title --- */
         .page-title {
-            font-family: 'Cormorant Garamond', serif; /* Changed to match image */
-            font-size: clamp(2.5rem, 8vw, 3.5rem); /* Adjusted size */
+            font-family: 'Cormorant Garamond', serif; 
+            font-size: clamp(2.5rem, 8vw, 3.5rem); 
             font-weight: 400;
             color: #444;
             margin-bottom: 60px;
             text-align: center;
             width: 100%;
-            letter-spacing: 3px; /* Added letter spacing */
-            text-transform: uppercase; /* Added uppercase */
+            letter-spacing: 3px; 
+            text-transform: uppercase; 
         }
 
-        /* --- SECTION 2: LOCATIONS OVERVIEW --- */
-        #locations-overview {
+        /* --- SECTION 2: LOVE STORY TIMELINE --- */
+        #love-story {
             background-color: #fcfaf5;
             background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
         }
+
+        .timeline-container {
+            position: relative;
+            max-width: 1000px;
+            width: 100%;
+            padding: 40px 0;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ccc;
+            transform: translateX(-50%);
+        }
         
-        .overview-container {
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0%;
+            background: #333;
+            transition: height 1.5s ease-out;
+        }
+        
+        .timeline-container.animate-line .timeline-line::before {
+            height: 100%;
+        }
+
+        .timeline-events {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: flex-start;
+            flex-direction: column;
             gap: 60px;
-            max-width: 1100px;
-            width: 100%;
-        }
-        
-        .overview-card {
-            background: transparent;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-        }
-        
-        .overview-card img {
-            width: 100%;
-            height: 450px; /* Fixed height for consistency */
-            object-fit: cover; /* Prevents stretching */
-            border-radius: 8px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            margin-bottom: 20px;
-            background-color: #f0efe8;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .overview-card a:hover img {
-            transform: scale(1.03);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-        
-        .overview-card p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #5d5d5d;
+            position: relative;
         }
 
-
-        /* --- SECTION 3: CEREMONY DETAILS --- */
-        #ceremony-details {
-            background-color: #fcfaf5; 
-            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
-            border-top: 1px solid #f0e9e1; /* Subtle separator */
-            text-align: left;
-        }
-
-        /* This is the new container for an entry (e.g., Ceremony) */
-        .location-entry {
+        .event {
             display: flex;
-            flex-wrap: wrap; /* Stacks on mobile */
             justify-content: center;
             align-items: center;
-            gap: 40px;
-            max-width: 1100px;
-            width: 100%;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            /* UNIFORM LAYOUT: Text Left, Image Right */
+            flex-direction: row;
         }
         
-        .location-image {
-            flex: 1; 
-            min-width: 300px;
-            max-width: 500px;
-            text-align: center; /* Ensures QR code centers below */
-        }
-
-        .location-image img.main-img {
-            width: 100%;
-            max-height: 450px; /* <-- FIX: Constrains image height */
-            object-fit: cover; /* <-- FIX: Prevents stretching */
-            border-radius: 8px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-            background-color: #f0efe8; /* Placeholder bg */
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .location-image a:hover img.main-img {
-            transform: scale(1.03);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-        
-        /* --- NEW: QR Code Section Style --- */
-        .qr-container {
-            margin-top: 25px;
-            text-align: center;
-            opacity: 0.85;
-            transition: opacity 0.3s ease;
-        }
-        .qr-container:hover {
+        .event.visible {
             opacity: 1;
-        }
-        
-        .qr-code {
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            border-radius: 4px;
-            background-color: #fff; /* White bg for QR */
-            padding: 5px; /* White border effect */
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .qr-label {
-            font-family: 'Lato', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            margin-top: 8px;
-            color: #888;
-            text-transform: uppercase;
-        }
-        /* --- END NEW --- */
-
-        .location-info {
-            flex: 1; 
-            min-width: 300px;
-            padding-left: 20px; /* Space from image */
-        }
-        
-        .location-info h3 { /* "MARRIAGE CEREMONY" */
-            font-size: 1rem;
-            font-family: 'Lato', sans-serif;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #777;
-            margin-bottom: 15px;
+            transform: translateY(0);
         }
 
-        .location-info h4 { /* "ST. GABRIEL..." */
-            font-size: clamp(1.8rem, 5vw, 2.2rem);
+        .event-content, .event-photo-wrapper {
+            flex: 1;
+            flex-basis: 50%;
+            max-width: 50%;
+            box-sizing: border-box;
+        }
+
+        /* Content always on Left, aligning Right towards line */
+        .event-content {
+            padding: 0 20px;
+            text-align: right;
+        }
+
+        /* Photo always on Right, aligning Left towards line */
+        .event-photo-wrapper {
+            padding: 0 20px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .event-photo {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            max-width: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: rotate(-2deg); /* Consistent tilt */
+            transition: transform 0.3s ease;
+            background-color: #eee;
+        }
+        .event-photo:hover { transform: scale(1.05) rotate(0deg); }
+
+        .event-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-dot {
+            width: 20px;
+            height: 20px;
+            background: #333;
+            border-radius: 50%;
+            border: 4px solid #fcfaf5;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            z-index: 2;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        .event.visible .event-dot {
+            transform: translate(-50%, -50%) scale(1);
+            transition-delay: 0.3s;
+        }
+
+        .event-year {
             font-family: 'Cormorant Garamond', serif;
-            font-weight: 700;
+            font-size: 2.5rem;
             color: #333;
-            line-height: 1.2;
-            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 5px;
         }
         
-        .location-info p { /* Time and Address */
+        .event-title {
             font-family: 'Lato', sans-serif;
             font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             color: #555;
-            margin-bottom: 8px;
-            line-height: 1.5;
+            margin-bottom: 5px;
         }
         
-        /* --- SECTION 4: RECEPTION DETAILS (NEW) --- */
-        #reception-details {
-            background-color: #fcfaf5; 
-            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
-            border-top: 1px solid #f0e9e1; /* Subtle separator */
-            text-align: left;
+        .event-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #777;
         }
-        
-        /* --- SECTION 5: INVITATION DETAILS (Was Reminders) --- */
+
+        /* --- SECTION 3: INVITATION DETAILS (Dark Section) --- */
         #invitation-details {
             background-color: #3a3a3a;
             background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
@@ -410,10 +382,8 @@
             max-width: 400px;
         }
 
-        .invite-logo {
-            text-align: center;
-        }
-        .invite-logo h3 { /* "THE WEDDING OF" */
+        .invite-logo { text-align: center; }
+        .invite-logo h3 {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.9rem;
             font-weight: 500;
@@ -421,14 +391,14 @@
             color: #ccc;
             margin-bottom: 10px;
         }
-        .invite-logo h2 { /* "Elaine and John" */
+        .invite-logo h2 {
             font-family: 'Dancing Script', cursive;
             font-size: clamp(2.5rem, 8vw, 3.5rem);
             color: #fff;
             line-height: 1.2;
             margin-bottom: 10px;
         }
-        .invite-logo p { /* Date and Location */
+        .invite-logo p {
             font-family: 'IBM Plex Mono', monospace;
             font-size: 0.9rem;
             color: #ccc;
@@ -452,20 +422,163 @@
             font-weight: 500;
         }
         .invite-text-details p {
-            margin-bottom: 20px; /* Space between paragraphs */
+            margin-bottom: 20px;
         }
 
-        /* --- END OF NEW STYLES --- */
+        /* --- SECTION 4: LOCATIONS OVERVIEW --- */
+        #locations-overview {
+            background-color: #fcfaf5;
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+        }
+        
+        .overview-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 60px;
+            max-width: 1100px;
+            width: 100%;
+        }
+        
+        .overview-card {
+            background: transparent;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .overview-card img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            background-color: #f0efe8;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .overview-card a:hover img {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        
+        .overview-card p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #5d5d5d;
+        }
 
+        /* --- SECTION 5 & 6: DETAILS --- */
+        #ceremony-details, #reception-details {
+            background-color: #fcfaf5; 
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+            border-top: 1px solid #f0e9e1;
+            text-align: left;
+        }
 
-        /* --- SECTION 6: RSVP --- */
+        .location-entry {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1100px;
+            width: 100%;
+        }
+        
+        .location-image {
+            flex: 1; 
+            min-width: 300px;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .location-image img.main-img {
+            width: 100%;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+            background-color: #f0efe8;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .location-image a:hover img.main-img {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        
+        /* QR Code */
+        .qr-container {
+            margin-top: 25px;
+            text-align: center;
+            opacity: 0.85;
+            transition: opacity 0.3s ease;
+        }
+        .qr-container:hover { opacity: 1; }
+        
+        .qr-code {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            border-radius: 4px;
+            background-color: #fff;
+            padding: 5px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .qr-label {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            color: #888;
+            text-transform: uppercase;
+        }
+
+        .location-info {
+            flex: 1; 
+            min-width: 300px;
+            padding-left: 20px;
+        }
+        
+        .location-info h3 {
+            font-size: 1rem;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .location-info h4 {
+            font-size: clamp(1.8rem, 5vw, 2.2rem);
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 700;
+            color: #333;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        
+        .location-info p {
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        /* --- SECTION 7: RSVP --- */
         #rsvp {
             background-color: #fcfaf5; 
             background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
-            border-top: 1px solid #f0e9e1; /* Subtle separator */
+            border-top: 1px solid #f0e9e1;
         }
 
-        /* Custom styles for the Pageclip form */
         .rsvp-form-container {
             max-width: 600px;
             margin: 0 auto;
@@ -473,14 +586,12 @@
             font-family: 'Lato', sans-serif;
             color: #555;
             width: 100%;
-            padding: 0 20px; /* Padding for form container */
-            position: relative; /* Needed for the new overlay */
-            overflow: hidden; /* Hide overlay when not active */
+            padding: 0 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
 
         .form-group label {
             display: block;
@@ -504,12 +615,8 @@
             appearance: none;
         }
         
-        .select-wrapper {
-            position: relative;
-        }
-        .form-group select {
-            padding-right: 40px; /* Make space for arrow */
-        }
+        .select-wrapper { position: relative; }
+        .form-group select { padding-right: 40px; }
         .select-wrapper::after {
             content: '▼';
             font-size: 0.8rem;
@@ -538,343 +645,239 @@
             text-transform: uppercase;
             transition: background-color 0.3s;
         }
-        .pageclip-form__submit:hover {
-            background-color: #555;
-        }
-        .pageclip-form__submit--loading {
-            background-color: #777;
-        }
+        .pageclip-form__submit:hover { background-color: #555; }
+        .pageclip-form__submit--loading { background-color: #777; }
         
-        /* --- NEW: RSVP "Thank You" Overlay Style --- */
+        /* RSVP Overlay */
         .rsvp-form__overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+            background: rgba(255, 255, 255, 0.9);
             display: flex;
             justify-content: center;
             align-items: center;
-            
-            visibility: hidden; /* Start hidden */
+            visibility: hidden;
             opacity: 0;
             transition: opacity 0.4s ease-out, visibility 0.4s;
-            
             font-family: 'Cormorant Garamond', serif;
             font-size: 2.5rem;
             color: #333;
             text-align: center;
         }
-        
-        .rsvp-form__overlay.show {
-            visibility: visible;
-            opacity: 1;
-        }
-        
-        .rsvp-form__overlay.error-message {
-            color: #D32F2F; /* Red for error */
-            font-size: 1.5rem;
-            line-height: 1.4;
-        }
-        /* --- END OF NEW STYLES --- */
+        .rsvp-form__overlay.show { visibility: visible; opacity: 1; }
+        .rsvp-form__overlay.error-message { color: #D32F2F; font-size: 1.5rem; line-height: 1.4; }
 
+        /* --- Animation --- */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.show { opacity: 1; transform: translateY(0); }
 
-        /* --- Animation on Scroll --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px); 
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.show {
-            opacity: 1;
-            transform: translateY(0); 
-        }
-
-        /* --- Music Toggle Button --- */
+        /* --- Music Toggle --- */
         #music-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
+            position: fixed; bottom: 20px; right: 20px; z-index: 100;
+            background: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%;
+            width: 50px; height: 50px; cursor: pointer;
             box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            transition: transform 0.2s ease-out;
+            display: flex; align-items: center; justify-content: center;
+            color: #333; transition: transform 0.2s ease-out;
         }
-        
-        #music-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        #music-toggle svg {
-            width: 24px;
-            height: 24px;
-            stroke: #333;
-        }
-        
-        /* --- REMOVED: RSVP "Toast" Notification Style --- */
-        /* #rsvp-toast { ... } */
-
+        #music-toggle:hover { transform: scale(1.1); }
+        #music-toggle svg { width: 24px; height: 24px; stroke: #333; }
 
         /* --- Mobile Responsiveness --- */
         @media (max-width: 768px) {
-            .fullscreen-page {
-                padding: 100px 20px; /* Removed extra bottom padding */
-            }
-            
-            #hero {
-                height: 100vh; /* Hero is always 100vh */
-            }
+            .fullscreen-page { padding: 100px 20px; }
+            #hero { height: 100vh; }
 
-            .names-container {
-                /* UPDATED: Moved from 35% to 28% to match desktop change */
-                top: 28%; 
-                width: 95vw; 
-            }
+            /* Timeline Mobile */
+            .timeline-line { left: 20px; transform: none; }
+            .event { flex-direction: column; align-items: flex-start; margin-left: 40px; }
+            .event-content, .event-photo-wrapper { flex: auto; max-width: 100%; width: 100%; padding: 0; text-align: left; }
+            .event-photo-wrapper { display: block; margin-top: 20px; }
+            .event-photo { margin: 0; max-width: 100%; transform: rotate(0deg); }
+            .event-dot { left: -29px; transform: scale(1); }
+            .event.visible .event-dot { transform: scale(1); }
 
-            .hero-content h1 {
-                font-size: clamp(1.8rem, 7vw, 3.5rem); 
-            }
+            /* Hero Mobile */
+            .names-container { top: 28%; width: 95vw; }
+            .hero-content h1 { font-size: clamp(1.8rem, 7vw, 3.5rem); }
+            .ampersand { margin: -10px 0; transform: none; }
+            .date { left: 50%; bottom: 20%; transform: translateX(-50%); text-align: center; width: 90%; }
+            .invite-text { right: auto; left: 50%; bottom: 12%; transform: translateX(-50%); text-align: center; width: 90%; }
             
-            .ampersand {
-                margin: -10px 0; 
-                transform: none; /* <-- ADDED: Resets the ampersand on mobile */
-            }
-
-            .date {
-                left: 50%;
-                bottom: 20%; 
-                transform: translateX(-50%);
-                text-align: center;
-                width: 90%;
-            }
-
-            .invite-text {
-                right: auto; 
-                left: 50%;
-                bottom: 12%; 
-                transform: translateX(-50%);
-                text-align: center;
-                width: 90%;
-            }
+            .fullscreen-page:not(#hero) { padding-bottom: 120px; }
+            .scroll-down.dark { margin-top: 40px; }
+            .location-info { padding-left: 0; text-align: center; }
+            .page-title { margin-bottom: 40px; }
+            .overview-card img { height: 350px; }
+            .name-john { transform: none; }
             
-            /* Ensures scroll button has space on mobile */
-            .fullscreen-page:not(#hero) {
-                 padding-bottom: 120px;
-            }
-            
-            .scroll-down.dark {
-                margin-top: 40px; /* Less margin on mobile */
-            }
-
-            .location-info {
-                padding-left: 0; 
-                text-align: center; 
-            }
-            
-            .page-title {
-                margin-bottom: 40px;
-            }
-
-            .overview-card img {
-                height: 350px; /* Slightly shorter on mobile */
-            }
-            
-            .name-john {
-                transform: none; /* THIS is the rule that handles it dynamically on mobile */
-            }
-            
-            /* --- NEW: Mobile styles for invitation page --- */
-            .invitation-container {
-                flex-direction: column; /* Stack vertically */
-                gap: 40px;
-            }
-            .invite-logo, .invite-text-details {
-                text-align: center;
-                max-width: 400px;
-            }
-            /* --- END NEW --- */
-            
-            /* --- REMOVED: RSVP Toast mobile styles --- */
+            /* Invitation Page Mobile */
+            .invitation-container { flexDirection: column; gap: 40px; }
+            .invite-logo, .invite-text-details { textAlign: center; maxWidth: 400px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 
-      SECTION 1: FULL-SCREEN LANDING PAGE
-    --><section id="hero" class="fullscreen-page">
-        <!-- This new div will be controlled by JavaScript for the parallax effect -->
+    <!-- SECTION 1: HERO -->
+    <section id="hero" class="fullscreen-page">
         <div class="hero-background"></div>
-
         <div class="hero-content">
-            
             <div class="names-container">
                 <h1 class="name-elaine">ELAINE VERNADINE</h1>
                 <p class="ampersand">&</p>
                 <h1 class="name-john">JOHN CHRISTIAN</h1>
             </div>
-            
             <p class="date">February 19, 2026</p>
-            
             <p class="invite-text">
                 CORDIALLY INVITE YOU TO THEIR<br>
                 WEDDING CELEBRATION
             </p>
-
             <div class="scroll-down">
-                <a href="#locations-overview"> <!-- Points to Page 2 --><span>SCROLL DOWN</span>
-                    <div class="chevrons">
-                        <span></span>
-                        <span></span>
-                        <span></span>
+                <a href="#love-story"><span>SCROLL DOWN</span>
+                    <div class="chevrons"><span></span><span></span><span></span></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: LOVE STORY TIMELINE -->
+    <section id="love-story" class="fullscreen-page">
+        <h2 class="page-title fade-in">Our Love Story</h2>
+        
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+            <div class="timeline-events">
+                
+                <!-- Event 1 -->
+                <div class="event">
+                    <div class="event-content">
+                        <div class="event-year">1998</div>
+                        <div class="event-title">Elaine is Born</div>
+                        <div class="event-subtitle">Valenzuela City</div>
                     </div>
-                </a>
-            </div>
-        </div>
-    </section>
+                    <div class="event-dot"></div>
+                    <div class="event-photo-wrapper">
+                        <div class="event-photo">
+                            <img src="https://placehold.co/300x300/e0e0e0/555?text=Elaine+1998" alt="Elaine Born">
+                        </div>
+                    </div>
+                </div>
 
-    <!-- 
-      SECTION 2: "HOW TO GET THERE" (OVERVIEW)
-    --><section id="locations-overview" class="fullscreen-page">
-        <h2 class="page-title fade-in">How to Get There</h2> 
-        
-        <div class="overview-container">
-            <div class="overview-card fade-in">
-                <!-- This now links to Page 3 --><a href="#ceremony-details">
-                    <img src="ceremony-picture.png" alt="Marriage Ceremony Location"
-                         onerror="this.src='https://placehold.co/400x450/e8e2d9/a6a6a6?text=Marriage+Ceremony'">
-                </a>
-                <p>MARRIAGE CEREMONY</p>
-            </div>
-            <div class="overview-card fade-in">
-                <!-- This now links to Page 4 (Reception Details) --><a href="#reception-details"> 
-                    <img src="reception-picture.png" alt="Reception Location"
-                         onerror="this.src='https://placehold.co/400x450/e8e2d9/a6a6a6?text=Reception+Venue'">
-                </a>
-                <p>RECEPTION</p>
-            </div>
-        </div>
+                <!-- Event 2 -->
+                <div class="event">
+                    <div class="event-content">
+                        <div class="event-year">1996</div>
+                        <div class="event-title">John is Born</div>
+                        <div class="event-subtitle">Paco, Manila</div>
+                    </div>
+                    <div class="event-dot"></div>
+                    <div class="event-photo-wrapper">
+                        <div class="event-photo">
+                            <img src="https://placehold.co/300x300/e0e0e0/555?text=John+1996" alt="John Born">
+                        </div>
+                    </div>
+                </div>
 
-        <div class="scroll-down dark fade-in">
-            <a href="#ceremony-details"> <!-- Points to Page 3 --><span>SCROLL DOWN</span>
-                <div class="chevrons">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <!-- Event 3 -->
+                <div class="event">
+                    <div class="event-content">
+                        <div class="event-year">2018</div>
+                        <div class="event-title">The Meeting</div>
+                        <div class="event-subtitle">Bumble is the Key</div>
+                    </div>
+                    <div class="event-dot"></div>
+                    <div class="event-photo-wrapper">
+                        <div class="event-photo">
+                            <img src="https://placehold.co/300x300/e0e0e0/555?text=Meeting+2018" alt="The Meeting">
+                        </div>
+                    </div>
                 </div>
-            </a>
-        </div>
-    </section>
+                
+                <!-- Event 4 -->
+                <div class="event">
+                    <div class="event-content">
+                        <div class="event-title">The First I Love You</div>
+                        <div class="event-subtitle">Coffees & I Love Yous</div>
+                    </div>
+                    <div class="event-dot"></div>
+                    <div class="event-photo-wrapper">
+                        <div class="event-photo">
+                            <img src="https://placehold.co/300x300/e0e0e0/555?text=Love+You" alt="First I Love You">
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 5 -->
+                <div class="event">
+                    <div class="event-content">
+                        <div class="event-year">2021</div>
+                        <div class="event-title">Pandemic: A Silver Lining</div>
+                        <div class="event-subtitle">Changes are Good</div>
+                    </div>
+                    <div class="event-dot"></div>
+                    <div class="event-photo-wrapper">
+                        <div class="event-photo">
+                            <img src="https://placehold.co/300x300/e0e0e0/555?text=Pandemic" alt="Pandemic">
+                        </div>
+                    </div>
+                </div>
 
-    <!-- 
-      SECTION 3: "HOW TO GET THERE" (CEREMONY DETAILS)
-    --><section id="ceremony-details" class="fullscreen-page">
-        <h2 class="page-title fade-in">How to Get There</h2> 
-        
-        <!-- Entry for the Ceremony --><div class="location-entry fade-in">
-            <div class="location-image">
-                <a href="https://maps.google.com/maps?q=St.+Gabriel+the+Archangel+Parish+Church+Santa+Maria+Bulacan" target="_blank" rel="noopener noreferrer">
-                    <img src="ceremony-picture.png" alt="St. Gabriel the Archangel Parish Church" class="main-img"
-                        onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Ceremony+Venue'">
-                </a>
-                
-                <!-- NEW: Placeholder QR Code for Ceremony -->
-                <div class="qr-container">
-                    <img src="ceremony-qr.png" alt="Scan for Map" class="qr-code"
-                         onerror="this.src='https://placehold.co/150x150/e0e0e0/333?text=QR+Code'">
-                    <p class="qr-label">SCAN FOR MAP</p>
+                <!-- Event 6 -->
+                <div class="event">
+                    <div class="event-content">
+                        <div class="event-year">2022</div>
+                        <div class="event-title">Moving to Hong Kong</div>
+                        <div class="event-subtitle">New Horizons</div>
+                    </div>
+                    <div class="event-dot"></div>
+                    <div class="event-photo-wrapper">
+                        <div class="event-photo">
+                            <img src="https://placehold.co/300x300/e0e0e0/555?text=Hong+Kong" alt="Hong Kong">
+                        </div>
+                    </div>
                 </div>
                 
-            </div>
-            <div class="location-info">
-                <h3>MARRIAGE CEREMONY</h3>
-                <h4>ST. GABRIEL THE ARCHANGEL<br>PARISH CHURCH</h4>
-                <p>12:00 PM</p>
-                <p>J. P. Rizal Street, New Site, Santa Maria, Bulacan</p>
-            </div>
-        </div>
-        
-        <div class="scroll-down dark fade-in">
-            <a href="#reception-details"> <!-- Points to Page 4 (Reception) --><span>SCROLL DOWN</span>
-                <div class="chevrons">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <!-- Event 7 -->
+                <div class="event">
+                    <div class="event-content">
+                        <div class="event-year">2025</div>
+                        <div class="event-title">The Proposal</div>
+                        <div class="event-subtitle">Popping the Question</div>
+                    </div>
+                    <div class="event-dot"></div>
+                    <div class="event-photo-wrapper">
+                        <div class="event-photo">
+                            <img src="https://placehold.co/300x300/e0e0e0/555?text=Proposal" alt="Proposal">
+                        </div>
+                    </div>
                 </div>
-            </a>
-        </div>
-    </section>
-    
-    <!-- 
-      SECTION 4: "HOW TO GET THERE" (RECEPTION DETAILS) (NEW)
-    --><section id="reception-details" class="fullscreen-page">
-        <h2 class="page-title fade-in">How to Get There</h2> 
-        
-        <!-- Entry for the Reception (now in its own section) --><div class="location-entry fade-in">
-            <div class="location-image">
-                <a href="https://www.google.com/maps?sca_esv=e78dc78310738fde&rlz=1C1WBCC_enPH1084PH1084&output=search&q=146+J.P.+Rizal+St.+San+Gabriel+3022+Santa+Maria,+Bulacan&source=lnms&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZMLQ4RPdPjLPmOakFCN7X8CDeRd7MSf3QLuh-Ogt4OB5y4-wxjrYUFy9kPDMzOULSyyXiNII_xhJX84-a4N5bwPI3rMOb-8OhiELlIiHyylGa02AW_oYufEe7M5O7YScyJ9h2JReKXYe_gPzHeXDQG2gGMq_oy1H5FOKqZiSOqGpX1MYZ_6cYaiq6PXCc86aBfAV8GQ&entry=mc&ved=1t:200715&ictx=111" target="_blank" rel="noopener noreferrer"> 
-                    <img src="reception-picture.png" alt="Reception Venue" class="main-img"
-                        onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Reception+Venue'">
-                </a>
-                
-                <!-- NEW: Placeholder QR Code for Reception -->
-                <div class="qr-container">
-                    <img src="reception-qr.png" alt="Scan for Map" class="qr-code"
-                         onerror="this.src='https://placehold.co/150x150/e0e0e0/333?text=QR+Code'">
-                    <p class="qr-label">SCAN FOR MAP</p>
-                </div>
-                
-            </div>
-            <div class="location-info">
-                <h3>RECEPTION</h3>
-                <h4>ANGEL GABRIEL GARDEN</h4>
-                <p>3:00 PM</p>
-                <p>146 J.P. Rizal St. San Gabriel 3022 Santa Maria, Bulacan</p>
+
             </div>
         </div>
 
-        <div class="scroll-down dark fade-in">
-            <a href="#invitation-details"> <!-- UPDATED: Points to Page 5 (Invitation Details) --><span>SCROLL DOWN</span>
-                <div class="chevrons">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+        <div class="scroll-down dark">
+            <a href="#invitation-details"><span>SCROLL DOWN</span>
+                <div class="chevrons"><span></span><span></span><span></span></div>
             </a>
         </div>
     </section>
     
-    <!-- 
-      SECTION 5: "INVITATION DETAILS" (Was Reminders)
-    --><section id="invitation-details" class="fullscreen-page">
-        
+    <!-- SECTION 3: INVITATION DETAILS (Moved here) -->
+    <section id="invitation-details" class="fullscreen-page">
         <div class="invitation-container fade-in">
-            <!-- Left Column: Logo -->
             <div class="invite-logo">
                 <h3>THE WEDDING OF</h3>
                 <h2>Elaine and John</h2>
                 <p>02.19.26</p>
                 <p>ANGEL GABRIEL GARDEN</p>
             </div>
-            
-            <!-- Center Column: Image -->
             <div class="invite-image">
-                <img src="https://placehold.co/400x500/5a5a5a/e0e0e0?text=Elaine+%26+John" alt="Elaine and John"
-                     onerror="this.src='https://placehold.co/400x500/5a5a5a/e0e0e0?text=Elaine+%26+John'">
+                <img src="https://placehold.co/400x500/5a5a5a/e0e0e0?text=Elaine+%26+John" alt="Elaine and John" onerror="this.src='https://placehold.co/400x500/5a5a5a/e0e0e0?text=Elaine+%26+John'">
             </div>
-            
-            <!-- Right Column: Details -->
             <div class="invite-text-details">
                 <p>
                     February 19, 2026 | 1:00 pm<br>
@@ -890,31 +893,101 @@
                 </p>
             </div>
         </div>
-
         <div class="scroll-down light-on-dark fade-in">
-            <a href="#rsvp"> <!-- Points to Page 6 (RSVP) --><span>SCROLL DOWN</span>
-                <div class="chevrons">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            <a href="#locations-overview"><span>SCROLL DOWN</span>
+                <div class="chevrons"><span></span><span></span><span></span></div>
             </a>
         </div>
     </section>
 
-    <!-- 
-      SECTION 6: RSVP (Was 5)
-    --><section id="rsvp" class="fullscreen-page">
-        <h2 class="page-title fade-in">Will You Be Joining Us?</h2>
+    <!-- SECTION 4: LOCATIONS OVERVIEW -->
+    <section id="locations-overview" class="fullscreen-page">
+        <h2 class="page-title fade-in">How to Get There</h2> 
+        <div class="overview-container">
+            <div class="overview-card fade-in">
+                <a href="#ceremony-details">
+                    <img src="ceremony-picture.png" alt="Marriage Ceremony Location" onerror="this.src='https://placehold.co/400x450/e8e2d9/a6a6a6?text=Marriage+Ceremony'">
+                </a>
+                <p>MARRIAGE CEREMONY</p>
+            </div>
+            <div class="overview-card fade-in">
+                <a href="#reception-details"> 
+                    <img src="reception-picture.png" alt="Reception Location" onerror="this.src='https://placehold.co/400x450/e8e2d9/a6a6a6?text=Reception+Venue'">
+                </a>
+                <p>RECEPTION</p>
+            </div>
+        </div>
+        <div class="scroll-down dark fade-in">
+            <a href="#ceremony-details"><span>SCROLL DOWN</span>
+                <div class="chevrons"><span></span><span></span><span></span></div>
+            </a>
+        </div>
+    </section>
 
-        
+    <!-- SECTION 5: CEREMONY DETAILS -->
+    <section id="ceremony-details" class="fullscreen-page">
+        <h2 class="page-title fade-in">How to Get There</h2> 
+        <div class="location-entry fade-in">
+            <div class="location-image">
+                <a href="https://maps.google.com/maps?q=St.+Gabriel+the+Archangel+Parish+Church+Santa+Maria+Bulacan" target="_blank" rel="noopener noreferrer">
+                    <img src="ceremony-picture.png" alt="St. Gabriel the Archangel Parish Church" class="main-img" onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Ceremony+Venue'">
+                </a>
+                <div class="qr-container">
+                    <img src="ceremony-qr.png" alt="Scan for Map" class="qr-code"
+                         onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example'">
+                    <p class="qr-label">SCAN FOR MAP</p>
+                </div>
+            </div>
+            <div class="location-info">
+                <h3>MARRIAGE CEREMONY</h3>
+                <h4>ST. GABRIEL THE ARCHANGEL<br>PARISH CHURCH</h4>
+                <p>12:00 PM</p>
+                <p>J. P. Rizal Street, New Site, Santa Maria, Bulacan</p>
+            </div>
+        </div>
+        <div class="scroll-down dark fade-in">
+            <a href="#reception-details"><span>SCROLL DOWN</span>
+                <div class="chevrons"><span></span><span></span><span></span></div>
+            </a>
+        </div>
+    </section>
+    
+    <!-- SECTION 6: RECEPTION DETAILS -->
+    <section id="reception-details" class="fullscreen-page">
+        <h2 class="page-title fade-in">How to Get There</h2> 
+        <div class="location-entry fade-in">
+            <div class="location-image">
+                <a href="https://www.google.com/maps?sca_esv=e78dc78310738fde&rlz=1C1WBCC_enPH1084PH1084&output=search&q=146+J.P.+Rizal+St.+San+Gabriel+3022+Santa+Maria,+Bulacan&source=lnms&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZMLQ4RPdPjLPmOakFCN7X8CDeRd7MSf3QLuh-Ogt4OB5y4-wxjrYUFy9kPDMzOULSyyXiNII_xhJX84-a4N5bwPI3rMOb-8OhiELlIiHyylGa02AW_oYufEe7M5O7YScyJ9h2JReKXYe_gPzHeXDQG2gGMq_oy1H5FOKqZiSOqGpX1MYZ_6cYaiq6PXCc86aBfAV8GQ&entry=mc&ved=1t:200715&ictx=111" target="_blank" rel="noopener noreferrer"> 
+                    <img src="reception-picture.png" alt="Reception Venue" class="main-img" onerror="this.src='https://placehold.co/500x400/F0EFE8/999?text=Reception+Venue'">
+                </a>
+                <div class="qr-container">
+                    <img src="reception-qr.png" alt="Scan for Map" class="qr-code"
+                         onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example'">
+                    <p class="qr-label">SCAN FOR MAP</p>
+                </div>
+            </div>
+            <div class="location-info">
+                <h3>RECEPTION</h3>
+                <h4>ANGEL GABRIEL GARDEN</h4>
+                <p>3:00 PM</p>
+                <p>146 J.P. Rizal St. San Gabriel 3022 Santa Maria, Bulacan</p>
+            </div>
+        </div>
+        <div class="scroll-down dark fade-in">
+            <a href="#rsvp"><span>SCROLL DOWN</span>
+                <div class="chevrons"><span></span><span></span><span></span></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION 7: RSVP -->
+    <section id="rsvp" class="fullscreen-page">
+        <h2 class="page-title fade-in">Will You Be Joining Us?</h2>
         <form action="https://send.pageclip.co/TFpvOufmu62uxqQrJlKLWILsVD7xz49I/Wedding-RSVP" class="pageclip-form rsvp-form-container fade-in" method="post">
-            
             <div class="form-group">
                 <label for="name">Full Name</label>
                 <input type="text" id="name" name="name" required />
             </div>
-
             <div class="form-group">
                 <label for="attending">Will you be attending?</label>
                 <div class="select-wrapper">
@@ -927,61 +1000,44 @@
             </div>
 
             <div class="form-group">
-                <label for="song">A song you'd love to hear?</label>
-                <input type="text" id="song" name="song_request" placeholder="(Optional)" />
+                <!-- Changed label and input type/name for Message -->
+                <label for="message">Message</label>
+                <input type="text" id="message" name="message" placeholder="(Optional)" />
             </div>
 
             <button type="submit" class="pageclip-form__submit">
                 <span>Send RSVP</span>
             </button>
-            
-            <!-- NEW: "Thank You" Overlay (Starts hidden) -->
             <div class="rsvp-form__overlay" id="rsvp-overlay">
                 <span id="rsvp-message-text">Thank you!</span>
             </div>
-            
         </form>
-        
-        <!-- No scroll-down button here, as it's the last page --></section>
+    </section>
 
-    <!-- 
-      BACKGROUND MUSIC
-    --><audio id="bg-music" loop>
-        <!-- 
-          IMPORTANT: Replace 'your-music.mp3' 
-          with the actual filename of your song.
-        --><source src="your-music.mp3" type="audio/mpeg">
+    <!-- AUDIO -->
+    <audio id="bg-music" loop>
+        <source src="your-music.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
     <button id="music-toggle">
-        <!-- SVG icon for 'Play' --><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
     </button>
 
-    <!-- REMOVED: RSVP "Toast" Notification -->
-    
-
-    <!-- All the JavaScript is placed inside this <script> tag --><script>
+    <!-- SCRIPT -->
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
             const music = document.getElementById('bg-music');
             const toggleBtn = document.getElementById('music-toggle');
-            
-            // SVG icons for play and mute
             const playIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>';
             const muteIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line></svg>';
-
             let isPlaying = false;
-            
-            // Try to autoplay music
+
             music.play().then(() => {
-                // It worked! (Rare, but possible)
                 isPlaying = true;
                 toggleBtn.innerHTML = muteIcon;
             }).catch(error => {
-                // Autoplay was blocked by the browser (this is normal)
                 isPlaying = false;
                 toggleBtn.innerHTML = playIcon;
-                console.log("Autoplay was prevented. User must interact with the page to start audio.");
             });
 
             toggleBtn.addEventListener('click', () => {
@@ -991,9 +1047,7 @@
                 } else {
                     music.play().then(() => { 
                         toggleBtn.innerHTML = muteIcon;
-                    }).catch(error => {
-                        console.log("Audio play was prevented by browser: ", error);
-                    });
+                    }).catch(error => { console.log(error); });
                 }
                 isPlaying = !isPlaying;
             });
@@ -1003,98 +1057,82 @@
                 toggleBtn.innerHTML = playIcon;
             });
 
-            // --- Animation on Scroll Logic ---
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
-                    // NOW: Check if it's intersecting (scrolling in) or not (scrolling out)
                     if (entry.isIntersecting) {
                         entry.target.classList.add('show');
+                        if (entry.target.id === 'love-story') {
+                           document.querySelector('.timeline-container').classList.add('animate-line');
+                        }
+                        if (entry.target.classList.contains('event')) {
+                            entry.target.classList.add('visible');
+                        }
                     } else {
-                        // This is the new part: remove 'show' when it's not on screen
                         entry.target.classList.remove('show');
+                         if (entry.target.id === 'love-story') {
+                            document.querySelector('.timeline-container').classList.remove('animate-line');
+                         }
+                         if (entry.target.classList.contains('event')) {
+                            entry.target.classList.remove('visible');
+                        }
                     }
                 });
-            }, {
-                threshold: 0.15 // Trigger when 15% of the element is visible
-            });
+            }, { threshold: 0.15 });
 
             const elementsToAnimate = document.querySelectorAll('.fade-in');
             elementsToAnimate.forEach((el) => observer.observe(el));
+            const timelineSection = document.getElementById('love-story');
+            if(timelineSection) observer.observe(timelineSection);
+            const timelineEvents = document.querySelectorAll('.event');
+            timelineEvents.forEach((el) => observer.observe(el));
 
-            
-            // --- New Parallax Scroll Effect ---
             window.addEventListener('scroll', () => {
                 const bg = document.querySelector('.hero-background');
-                const scrollY = window.scrollY;
-
                 if (bg) {
-                    // This moves the background down at 50% the speed of the scroll
-                    bg.style.transform = `translateY(${scrollY * 0.5}px)`;
+                    bg.style.transform = `translateY(${window.scrollY * 0.5}px)`;
                 }
             });
 
-            
-            // --- NEW: RSVP Overlay Logic ---
             const rsvpForm = document.querySelector('.pageclip-form');
             const rsvpOverlay = document.getElementById('rsvp-overlay');
             const rsvpMessageText = document.getElementById('rsvp-message-text');
             
-            // 1. Listen for the form SUBMIT event
             if (rsvpForm) {
                 rsvpForm.addEventListener('submit', (e) => {
-                    // 2. STOP the browser from redirecting (This is the fix!)
                     e.preventDefault();
                 });
             }
 
-            // --- Function to show the overlay message ---
             let overlayTimer;
             function showOverlayMessage(message, isSuccess = true) {
                 if (!rsvpOverlay || !rsvpMessageText) return;
-
-                // Clear any existing timer
                 clearTimeout(overlayTimer);
-
-                // Set content and style
                 rsvpMessageText.textContent = message;
                 if (isSuccess) {
                     rsvpOverlay.classList.remove('error-message');
                 } else {
                     rsvpOverlay.classList.add('error-message');
                 }
-                
-                // Show the overlay
                 rsvpOverlay.classList.add('show');
-                
-                // If it's an ERROR, hide it after 5 seconds so they can try again
                 if (!isSuccess) {
                     overlayTimer = setTimeout(() => {
                         rsvpOverlay.classList.remove('show');
-                    }, 5000); // 5 seconds
+                    }, 5000);
                 }
-                // If it's a SUCCESS, it stays visible.
             }
 
-            // 3. Listen for Pageclip's "success" event (which happens in the background)
             window.addEventListener('pageclip:success', (event) => {
-                if (rsvpForm) {
-                    rsvpForm.reset(); // Reset form for next user
-                }
+                if (rsvpForm) { rsvpForm.reset(); }
                 showOverlayMessage("Thank you!", true);
             });
             
-            // 4. NEW: Listen for Pageclip's "error" event
             window.addEventListener('pageclip:error', (event) => {
                 console.error("Pageclip error: ", event.detail.error);
-                // Show a user-friendly error message
                 showOverlayMessage("Error: Submission blocked.\nPlease try again later.", false);
             });
-            // --- END OF NEW SCRIPT ---
-
         });
     </script>
 
-    <!-- Pageclip Script (must be last) --><script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
-
+    <script src="https://s.pageclip.co/v1/pageclip.js" charset="utf-8"></script>
 </body>
 </html>
