@@ -351,7 +351,7 @@
             color: #777;
         }
 
-        /* --- SECTION 3: INVITATION DETAILS (Dark Section) --- */
+        /* --- SECTION 3: INVITATION DETAILS --- */
         #invitation-details {
             background-color: #3a3a3a;
             background-image: url('https://www.transparenttextures.com/patterns/dark-matter.png');
@@ -425,10 +425,87 @@
             margin-bottom: 20px;
         }
 
-        /* --- SECTION 4: LOCATIONS OVERVIEW --- */
+        /* --- SECTION 4: ENTOURAGE (NEW) --- */
+        #entourage {
+            background-color: #fcfaf5; 
+            background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+            border-top: 1px solid #f0e9e1;
+            text-align: center;
+        }
+        
+        #entourage h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(3rem, 10vw, 4.5rem);
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 60px;
+        }
+
+        .entourage-container {
+            width: 100%;
+            max-width: 1000px;
+        }
+        
+        .entourage-group h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .entourage-group h4 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        
+        .entourage-group p {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: #666;
+        }
+        
+        .entourage-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .entourage-group {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .entourage-group.wide {
+            max-width: 800px;
+            margin: 0 auto 60px auto;
+        }
+        
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px 40px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1.05rem;
+            color: #666;
+            text-align: center;
+        }
+
+        /* --- SECTION 5: LOCATIONS OVERVIEW --- */
         #locations-overview {
             background-color: #fcfaf5;
             background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
+            border-top: 1px solid #f0e9e1;
         }
         
         .overview-container {
@@ -472,7 +549,7 @@
             color: #5d5d5d;
         }
 
-        /* --- SECTION 5 & 6: DETAILS --- */
+        /* --- SECTION 6 & 7: DETAILS --- */
         #ceremony-details, #reception-details {
             background-color: #fcfaf5; 
             background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
@@ -572,7 +649,7 @@
             line-height: 1.5;
         }
 
-        /* --- SECTION 7: RSVP --- */
+        /* --- SECTION 8: RSVP --- */
         #rsvp {
             background-color: #fcfaf5; 
             background-image: url('https://www.transparenttextures.com/patterns/subtle-white-feathers.png');
@@ -894,13 +971,76 @@
             </div>
         </div>
         <div class="scroll-down light-on-dark fade-in">
+            <a href="#entourage"><span>SCROLL DOWN</span>
+                <div class="chevrons"><span></span><span></span><span></span></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- SECTION 4: ENTOURAGE (NEW) -->
+    <section id="entourage" class="fullscreen-page">
+        <h2 class="page-title fade-in" style="font-family: 'Dancing Script', cursive;">The Entourage</h2>
+        <div class="entourage-container fade-in">
+             <!-- Parents Row -->
+             <div class="entourage-row">
+                <div class="entourage-group">
+                   <h3>PARENTS OF THE BRIDE</h3>
+                   <p>Marietes A. Liongson<br>Virgilio B. Liongson</p>
+                </div>
+                <div class="entourage-group">
+                   <h3>PARENTS OF THE GROOM</h3>
+                   <p>Marie D.A. Francia<br>Eduardo V. Francia</p>
+                </div>
+             </div>
+        
+             <!-- Primary Sponsors -->
+             <div class="entourage-group wide">
+                <h3>PRIMARY SPONSORS</h3>
+                <div class="sponsors-grid">
+                    <div>Jesusa A. Villar</div>
+                    <div>Vicente C. Alfonso Jr.</div>
+                    <div>Emily A. Verdillo</div>
+                    <div>Emil Ferdinez, PhD</div>
+                    <div>Monette D.A. Elape</div>
+                    <div>Edileo E. Elape</div>
+                    <div>Magnolia D.A. Moleta</div>
+                    <div>Raymond Moleta</div>
+                    <div>Jenny E. Francia</div>
+                    <div>Rudy V. Francia</div>
+                    <div>Brgy. Con. Enya L. Clavio</div>
+                    <div>Garry Ador Dionisio, PhD</div>
+                    <div>Maria Clara K. Calvez</div>
+                    <div>Christopher Cabiles Lupin</div>
+                    <div>Marinah Liu</div>
+                    <div>Ricardo De Guzman</div>
+                </div>
+             </div>
+        
+             <!-- Secondary Sponsors -->
+             <h3>SECONDARY SPONSORS</h3>
+             <div class="entourage-row">
+                <div class="entourage-group">
+                    <h4>CANDLE</h4>
+                    <p>Christine Joyce A. Blancaflor<br>Jude Rafael D.A. Moleta</p>
+                </div>
+                <div class="entourage-group">
+                    <h4>VEIL</h4>
+                    <p>Maria Janina F. Santiago<br>Rowell F. Santiago</p>
+                </div>
+                <div class="entourage-group">
+                    <h4>CORD</h4>
+                    <p>Ethel Vernadete A. Liongson<br>Vern Ezekiel A. Liongson</p>
+                </div>
+             </div>
+        </div>
+        <div class="scroll-down dark fade-in">
             <a href="#locations-overview"><span>SCROLL DOWN</span>
                 <div class="chevrons"><span></span><span></span><span></span></div>
             </a>
         </div>
     </section>
 
-    <!-- SECTION 4: LOCATIONS OVERVIEW -->
+    <!-- SECTION 5: LOCATIONS OVERVIEW -->
     <section id="locations-overview" class="fullscreen-page">
         <h2 class="page-title fade-in">How to Get There</h2> 
         <div class="overview-container">
@@ -924,7 +1064,7 @@
         </div>
     </section>
 
-    <!-- SECTION 5: CEREMONY DETAILS -->
+    <!-- SECTION 6: CEREMONY DETAILS -->
     <section id="ceremony-details" class="fullscreen-page">
         <h2 class="page-title fade-in">How to Get There</h2> 
         <div class="location-entry fade-in">
@@ -952,7 +1092,7 @@
         </div>
     </section>
     
-    <!-- SECTION 6: RECEPTION DETAILS -->
+    <!-- SECTION 7: RECEPTION DETAILS -->
     <section id="reception-details" class="fullscreen-page">
         <h2 class="page-title fade-in">How to Get There</h2> 
         <div class="location-entry fade-in">
@@ -980,9 +1120,10 @@
         </div>
     </section>
 
-    <!-- SECTION 7: RSVP -->
+    <!-- SECTION 8: RSVP -->
     <section id="rsvp" class="fullscreen-page">
         <h2 class="page-title fade-in">Will You Be Joining Us?</h2>
+
         <form action="https://send.pageclip.co/TFpvOufmu62uxqQrJlKLWILsVD7xz49I/Wedding-RSVP" class="pageclip-form rsvp-form-container fade-in" method="post">
             <div class="form-group">
                 <label for="name">Full Name</label>
@@ -998,13 +1139,11 @@
                     </select>
                 </div>
             </div>
-
             <div class="form-group">
                 <!-- Changed label and input type/name for Message -->
                 <label for="message">Message</label>
                 <input type="text" id="message" name="message" placeholder="(Optional)" />
             </div>
-
             <button type="submit" class="pageclip-form__submit">
                 <span>Send RSVP</span>
             </button>
